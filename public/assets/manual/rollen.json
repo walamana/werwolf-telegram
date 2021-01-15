@@ -75,9 +75,16 @@
     "name": "Die Hexe",
     "amount": 1,
     "score": 4,
-    "template": "erwacht jede Nacht um 00:00 Uhr nach den Werwölfen. Sie hat einen Heiltrank, mit der sie das Opfer der Werwölfe retten kann, und einen Todestrank, mit der sie eine Person aus dem Dorf vergiften kann. Das Ergebnis muss bis spätestens {{root.model.zeiten.zeit_ende_rollen_nacht2}} Uhr der Spielleitung mitgeteilt werden. Die Hexe erfährt nichts über beabsichtigte Opfer der Werwölfe und ob sie mit ihrem Heilstrank eine Person beschützt hat. Auch über die Infektion einer Person durch infizierten Werwolf wird die Hexe nicht informiert.",
+    "template": "erwacht jede Nacht um 00:00 Uhr nach den Werwölfen. Sie hat einen Heiltrank, mit der sie das bzw. eines der Opfer der Werwölfe retten kann, und einen Todestrank, mit der sie eine Person aus dem Dorf vergiften kann. Die erfährt dabei die Namen der Opfer{{#unless local.other.erfaehrt_namen.value}} **nicht**{{/unless}}. Die Entscheidung muss bis spätestens {{root.model.zeiten.zeit_ende_rollen_nacht2}} Uhr der Spielleitung mitgeteilt werden. Über die Infektion einer Person durch den infizierten Werwolf wird die Hexe nicht informiert.",
     "attitude": "good",
-    "icon": "hexe"
+    "icon": "hexe",
+    "other": {
+      "erfaehrt_namen": {
+        "name": "Erfährt Namen der Opfer",
+        "value": true,
+        "type": "toggle"
+      }
+    }
   },
   {
     "name": "Der Jäger",
