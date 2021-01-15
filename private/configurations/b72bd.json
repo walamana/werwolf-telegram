@@ -1,0 +1,88 @@
+{
+  "einfuerung": {},
+  "zeiten": {
+    "zeit_beginn_nacht1": "20:00",
+    "zeit_ende_rollen_nacht1": "22:00",
+    "zeit_ende_rollen_nacht2": "08:40",
+    "zeit_beginn_nacht2": "00:00",
+    "zeit_beginn_tag": "09:00",
+    "zeit_beginn_plaedoyer_klaeger": "18:00",
+    "zeit_beginn_plaedoyer_angeklagte": "18:15",
+    "zeit_beginn_abstimmung": "18:30",
+    "zeit_ende_abstimmung": "20:00"
+  },
+  "grundlegende_regeln": {
+    "reden_ausserhalb_des_spiels": false,
+    "eindeutige_beweise": true
+  },
+  "justiz": {
+    "unschuldsvermutung": true,
+    "geteiltes_plaedoyer": true
+  },
+  "rollen": {
+    "aktiviert": [
+      {
+        "name": "Die Werwölfe",
+        "amount": 3,
+        "score": -1,
+        "template": "suchen zusammen mit den anderen Werwölfen jede Nacht ein Opfer aus.",
+        "attitude": "evil"
+      },
+      {
+        "name": "Der infizierte Werwolf",
+        "amount": 1,
+        "score": -3,
+        "template": "gehört zu den Werwölfen. Er hat einmal im Spiel die Möglichkeit eine Person, die eigentlich von den Wölfen getötet wird, zu infizieren. Diese wird dann ab der nächsten Nacht zum Werwolf, verliert aber ihre andere Rolle. Personen, die in der Nacht beschützt werden (also nicht getötet werden können), können nicht infiziert werden. So verhindert der Heil- und Todestrank der Hexe eine Infektion. Bei einem Scheitern der Infektion, bekommt der Wolf seine Fähigkeiten nicht zurück. Die zu infizierende Person muss per Privatnachricht bis spätestens 08:50 Uhr der Spielleitung mitgeteilt werden. ",
+        "attitude": "evil"
+      },
+      {
+        "name": "Dorfbewohner",
+        "amount": 2,
+        "score": 1,
+        "template": "",
+        "attitude": "good"
+      },
+      {
+        "name": "Der Seher",
+        "amount": 1,
+        "score": 2,
+        "template": "kann jede Nacht eine Person überprüfen, welche Gesinnung diese hat. Hierfür schreibt er /sie eine Privatnachricht an die Spielleitung, von welcher Person er / sie die Rolle erfahren möchte.",
+        "attitude": "good"
+      },
+      {
+        "name": "Der Jägerhund",
+        "amount": 1,
+        "score": 1,
+        "template": "verwandelt sich, sobald der Jäger gestorben ist, zum Werwolf. Der Jäger und sein Hund dürfen sich, über die dazugehörige Sondergruppe, sowohl am Tag, als auch bei Nacht, austauschen. Der Jägerhund darf vom Jäger nicht erschossen werden.",
+        "attitude": "unknown"
+      }
+    ],
+    "buergermeister": {}
+  },
+  "spielgruppen": {
+    "dorfgemeinde": {
+      "nachtaktiv": false
+    },
+    "werwolf_gruppe": true,
+    "jaeger_gruppe": {
+      "aktiv": false,
+      "tagaktiv": true
+    },
+    "liebespaar_gruppe": {
+      "aktiv": false,
+      "tagaktiv": true
+    },
+    "gute_geister": {
+      "aktiv": true,
+      "kommunizieren": 1,
+      "aufdecken": 2,
+      "raten": 0
+    },
+    "boese_geister": {
+      "aktiv": true,
+      "kommunizieren": 1,
+      "aufdecken": 0,
+      "raten": 0
+    }
+  }
+}

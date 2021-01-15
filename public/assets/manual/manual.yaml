@@ -1,0 +1,58 @@
+
+version: 1
+einfuerung:
+
+zeiten:
+  zeit_beginn_nacht1: 20:00
+  zeit_ende_rollen_nacht1: 22:00
+  zeit_ende_rollen_nacht2: 08:50
+  zeit_beginn_nacht2: 00:00
+  zeit_beginn_tag: 09:00
+  zeit_beginn_plaedoyer_klaeger: 18:00
+  zeit_beginn_plaedoyer_angeklagte: "8:15
+  zeit_beginn_abstimmung: 18:30
+  zeit_ende_abstimmung: 20:00
+
+grundlegende_regeln:
+  reden_ausserhalb_des_spiels: false
+  eindeutige_beweise: true
+
+justiz:
+  unschuldsvermutung: true,
+  geteiltes_plaedoyer: true
+
+rollen:
+  rollenuebersicht: true
+  rollenuebersicht_amount: true
+  buergermeister:
+      aktiv: true
+      stimme: 1.5
+
+spielgruppen:
+  dorfgemeinde:
+    nachtaktiv: true
+
+  werwolf_gruppe: true
+
+  jaeger_gruppe:
+    aktiv: false
+    tagaktiv: true
+    siegesbedingung: false
+
+  liebespaar_gruppe:
+    aktiv: false
+    tagaktiv: true
+
+  gute_geister:
+    aktiv: true
+    kommunizieren: 1
+    aufdecken: 2
+    raten: 0
+
+  boese_geister:
+    aktiv: true
+    kommunizieren: 1
+    aufdecken: 0
+    raten: 0
+
+

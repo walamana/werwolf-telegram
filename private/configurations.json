@@ -1,0 +1,6 @@
+[
+  {
+    "id": "b72bd",
+    "config": {"einfuerung":{},"zeiten":{"zeit_beginn_nacht1":"20:00","zeit_beginn_nacht2":"00:00","zeit_beginn_tag":"09:00","zeit_beginn_plaedoyer_klaeger":"18:00","zeit_beginn_plaedoyer_angeklagte":"18:15","zeit_beginn_abstimmung":"18:30","zeit_ende_abstimmung":"20:00"},"grundlegende_regeln":{"reden_ausserhalb_des_spiels":false,"eindeutige_beweise":true},"justiz":{"unschuldsvermutung":true,"geteiltes_plaedoyer":true},"rollen":{"aktiviert":[],"buergermeister":{}},"spielgruppen":{"dorfgemeinde":{"nachtaktiv":false},"werwolf_gruppe":true,"jaeger_gruppe":{"aktiv":false,"tagaktiv":true},"liebespaar_gruppe":{"aktiv":false,"tagaktiv":true},"gute_geister":{"aktiv":true,"kommunizieren":1,"aufdecken":2,"raten":0},"boese_geister":{"aktiv":true,"kommunizieren":1,"aufdecken":0,"raten":0}}}
+  }
+]

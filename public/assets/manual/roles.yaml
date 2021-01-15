@@ -1,0 +1,30 @@
+Die Werwölfe:
+  amount: 1
+  score: -6
+  template: |
+    wadawdawdkj ökj alöwd
+    lkj lkj lkjawd
+    lk jöldw
+  attitude: evil
+  icon: werwolf
+
+# Hier fehlen weitere Werwölfe...
+
+Der Seher:
+  amount: 1
+  score: 7
+  template: |
+    kann jede Nacht eine Person überprüfen, welche
+    {{local.other.erkenntnis.value}} diese hat.
+    Hierfür schreibt er /sie eine Privatnachricht an
+    die Spielleitung, von welcher Person er / sie
+    die Rolle erfahren möchte.
+  attitude: good
+  icon: seher
+  other:
+    erkenntnis:
+      name: Erkenntnis über den Spieler
+      value: Gesinnung
+      type: option
+      options: [ Gesinnung, Rolle ]
+
