@@ -106,7 +106,7 @@
     "name": "Der Amor",
     "amount": 1,
     "score": -3,
-    "template": "wählt in der ersten Nacht zwei Personen aus, die sich unendlich verlieben. Wenn das Liebespaar der selben Gruppe - z.B. dem Dorf oder den Werwölfen - gehört, gewinnt es mit der jeweiligen Gruppe. Andernfalls gewinnt es nur dann, wenn die Verliebten die letzten lebenden Spieler im Dorf sind. Stirbt einer der beiden, stürzt sich der andere Partner aus Trauer mit in den Tod und begeht Selbstmord.",
+    "template": "wählt in der ersten Nacht zwei Personen aus, die sich unendlich verlieben. Wenn das Liebespaar der selben Gruppe - z.B. dem Dorf oder den Werwölfen - gehört, gewinnt es mit der jeweiligen Gruppe. Andernfalls gewinnt es nur dann, wenn die Verliebten die letzten lebenden Spieler im Dorf sind. Stirbt einer der beiden, stürzt sich der andere Partner aus Trauer mit in den Tod und begeht Selbstmord. Sind beide Spieler teil einer jeweils anderen Gruppe, kommen sie **nicht** in die Geistergruppen",
     "attitude": "good",
     "icon": "amor"
   },
