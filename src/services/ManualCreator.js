@@ -4,7 +4,7 @@ import Rollen from "@/services/Rollen";
 import {ReplaySubject} from "rxjs";
 const Handlebars = require("handlebars")
 
-// const yaml = require("js-yaml")
+const yaml = require("js-yaml")
 
 Handlebars.registerHelper("list-number", function(s) {
     return parseInt(s) + 1
@@ -51,13 +51,14 @@ export default {
     loadTemplates(){
         Promise.all([
             fetch("./assets/manual/template.md").then(res => res.text()),
-            fetch("./assets/manual/rollen.json").then(res => res.json()),
-            fetch("./assets/manual/defaults.json").then(res => res.json()),
-            // fetch("./assets/manual/roles.yaml").then(res => res.text())
+            // fetch("./assets/manual/rollen.json").then(res => res.json()),
+            fetch("./assets/manual/roles.yaml").then(res => res.text()),
+            // fetch("./assets/manual/defaults.json").then(res => res.json()),
+            fetch("./assets/manual/defaults.yaml").then(res => res.text()),
         ]).then(results => {
             let template = results[0]
-            let rollen = results[1]
-            let defaults = results[2]
+            let rollen = this.parseYAMLRoles(results[1]);
+            let defaults = yaml.load(results[2])
             this.template = template
             Rollen.rollen = rollen
             this.defaults = defaults
@@ -67,6 +68,15 @@ export default {
             // let roles = yaml.load(results[3])
             // console.log(roles)
         })
+    },
+    parseYAMLRoles(yamlData){
+        let parsed = yaml.load(yamlData)
+        let roles = []
+        for(let role in parsed){
+            parsed[role].name = role
+            roles.push(parsed[role])
+        }
+        return roles
     },
     loadModel(id) {
         if(id === "") return
