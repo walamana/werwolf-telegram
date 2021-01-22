@@ -141,7 +141,8 @@ Der Amor:
     gehört, gewinnt es mit der jeweiligen Gruppe. Andernfalls gewinnt es nur
     dann, wenn die Verliebten die letzten lebenden Spieler im Dorf sind. Stirbt
     einer der beiden, stürzt sich der andere Partner aus Trauer mit in den Tod
-    und begeht Selbstmord.
+    und begeht Selbstmord. Sind beide Spieler teil einer jeweils anderen Gruppe,
+    kommen sie **nicht** in die Geistergruppen
   attitude: good
   icon: amor
 Der Wächter:
