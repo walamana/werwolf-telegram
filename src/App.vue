@@ -3,6 +3,10 @@
 
   <div id="mainContent">
 
+    <a href="https://github.com/walamana/werwolf-telegram" style="position: fixed; top: 0; left: 0" class="printHide">
+      <img loading="lazy" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_white_ffffff.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1">
+    </a>
+
     <div id="previewContainer">
       <manual-preview id="preview" ref="preview"/>
     </div>
@@ -51,7 +55,7 @@
 
 
 <!--      5. Rollen in der Dorfgemeinschaft-->
-      <collapsible-div :collapsed="false" title="5. Rollen in der Dorfgemeinschaft" icon="person_outline" second-option="visibility" @option="scrollTo(5)">
+      <collapsible-div title="5. Rollen in der Dorfgemeinschaft" icon="person_outline" second-option="visibility" @option="scrollTo(5)">
         <p>Gesamtanzahl an Rollen: <span class="amount-roles">{{amountRoles()}}</span></p>
         <p>Balancing: <span class="amount-roles" :style="{ background: scoreColorAlt(totalScore())}">{{totalScore()}}</span> <span>{{difficulty()}}</span></p>
         <input checked type="checkbox" @click.stop v-model="man.rollen.rollenuebersicht"/><label>Rollenübersicht anzeigen</label><br>
@@ -419,7 +423,9 @@ export default {
       saveAs(new Blob([JSON.stringify(this.man)], {type: "text/plain;charset=utf-8"}), "manual.json")
     },
     print(){
+      // document.querySelector("#app").classList.add("print")
       window.print()
+      // document.querySelector("#app").classList.remove("print")
     },
     summary(){
       let summary = []
@@ -485,26 +491,31 @@ html, body{
 
 #previewContainer{
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 #preview{
-  --size: 800px;
+  --size: 750px;
   --padding-side: 60px;
   --padding-tb: 30px;
   width: calc(var(--size) - 2 * var(--padding-side));
   height: calc(var(--size) * (7/5) - 2 * var(--padding-tb));
   padding: var(--padding-tb) var(--padding-side) 60px;
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  margin: 100px;
   flex-shrink: 0;
   position: relative;
 
+  @media(max-height: 1080px){
+    height: calc(100% - var(--padding-tb) - 60px);
+    margin: 0;
+    border-radius: 0;
+  }
   @media(max-width: 800px){
     width: calc(100% - var(--padding-side) * 2);
-    margin: 0;
   }
   @media(max-width: 600px){
     width: calc(100% - 16px * 2);
@@ -688,6 +699,7 @@ button{
 }
 
 @media print {
+  background: white;
   html, body, #app {
     background: white;
   }
@@ -698,6 +710,10 @@ button{
 
   #app {
     overflow: auto;
+  }
+
+  .printHide{
+    display: none;
   }
 
   .settings {
