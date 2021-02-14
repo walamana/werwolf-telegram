@@ -73,7 +73,8 @@
               <span class="description" >{{difficulty()}}</span>
             </div>
             <div class="item">
-              <span class="amount-roles distribution-score" :style="{ background: calculateColor(distributionScore(), 1.5, 3)}">{{distributionScore()}}</span>
+              <span class="amount-roles distribution-score"
+                    :style="{ background: distributionScore() < 0 ? 'rgba(255, 255, 255, 0.3)' : calculateColor(distributionScore(), 1.5, 3.5)}">{{distributionScore() < 0 ? "?" : distributionScore()}}</span>
             </div>
             <div class="item">
               <span class="amount-roles" :style="{ background: calculateColor(-escalationScore(), -10, 10)}">{{escalationScore()}}</span>
@@ -422,7 +423,8 @@ export default {
       for(let role of this.man.rollen.aktiviert){
         if(role.attitude === "evil") evil += role.amount;
       }
-      return floorAt((this.amountRoles() - evil) / evil, 2)
+      let val = floorAt((this.amountRoles() - evil) / evil, 2)
+      return val === Infinity || isNaN(val) ? -1 : val
     },
     escalationScore(){
       let escalation = 0;
