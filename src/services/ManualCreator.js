@@ -115,6 +115,8 @@ export default {
           if(!updatedRole) continue
           role.template = updatedRole.template
           role.icon = updatedRole.icon
+          role.score = updatedRole.score
+          role.escalation = updatedRole.escalation
           for(let key in updatedRole.other){
               role.other[key] = {
                   name: updatedRole.other[key].name,
@@ -179,13 +181,22 @@ export default {
 
         return `hsla(${200 * y}, 100%, 50%, 0.5)`
     },
-    scoreColor(score, worst, best){
+    scoreColor(score, worst, best, invert){
+        if(invert === undefined) invert = false
         if(!worst) worst = -4
         if(!best) best = 4
         let color = score >= 0 ? 100 : 0
         let base = score >= 0 ? best : worst
 
         return `hsla(${color}, 100%, 50%, ${(0.25 + 0.25 * (score/base))})`
+    },
+    calculateColor(value, low, high){
+        if(!low) low = -6
+        if(!high) high = 6
+        let y = (1/(high - low)) * value - (low / (high - low))
+        y = Math.min(Math.max(y, 0), 1);
+
+        return `hsla(${200 * y}, 100%, 50%, 0.5)`
     },
     upgradeManual(man){
         if(man.version < this.currentVersion) throw new Error("Cannot downgrade to lower version!")

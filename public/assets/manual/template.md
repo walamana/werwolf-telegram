@@ -50,8 +50,9 @@ Tabelle 1: Tagesablauf der Dorfgruppe
 ## 3. Grundlegende Regeln
 
 #### 3.1. Ziel des Spiels
-Das Spiel endet sobald eine der beiden Parteien – Dorfbewohner mit guter Gesinnung oder böse Werwölfe
-– alle gegnerischen Spieler / Spielerinnen getötet haben.
+Das Spiel endet, sobald eine der beiden Parteien – Dorfbewohner mit guter Gesinnung oder böse Werwölfe
+– alle gegnerischen Spieler / Spielerinnen getötet haben. Auch als toter Spieler hat man gewonnen, wenn 
+die eigene Gruppe (z.B. die Dorfbewohner, die Werwölfe) das Spiel gewonnen hat.
 
 #### 3.2. Verhalten der Spieler / Spielerinnen außerhalb des Spiels
 Außerhalb der Telegram-Werwolf-Spielgruppe (Dorfgruppe) dürfen sich die Spieler / Spielerinnen {{#if model.grundlegende_regeln.reden_ausserhalb_des_spiels}}{{else}}keinesfalls{{/if}}
@@ -78,6 +79,7 @@ Im Spiel können immer wieder Situationen stehen, die bisher nicht vom Regelwerk
 eine Regeländerung verkünden, die möglichst für alle Spielgruppen fair ist.
 Auch die Spielleitung ist nicht unfehlbar. Sollte es Anregungen, Fragen, Kritik oder Beschwerden geben, kann die 
 Spielleitung jederzeit angeschrieben werden. Jedoch sollten grundsätzlich die Weisungen der Spielleitung befolgt werden.
+Fragen oder Unklarheiten sollten grundsätzlich – wenn möglich – vor Beginn des Spiels geklärt werden.
 
 ## 4. Justiz in der Dorfgemeinschaft
 
@@ -188,7 +190,13 @@ während des Spiels verändern kann. Zu diesen zählen der Jägerhund, der Doppe
 {{/each}}
 {{/if}}
 
-#### 5.4. Der Bürgermeister / die Bürgermeisterin
+#### 5.4. Eintritt des Todes
+Ein Spieler ist offiziell erst dann tot, wenn die Spielleitung den Tod der Person verkündet hat. 
+Die Ergebnisse der Rollen (z.B. für den Seher) werden vom Spielleiter regulär zum Beginn des Tages an
+die jeweilige Figur gesendet. Sollte die Nachricht früher gesendet werden, darf diejenige Figur diese Information
+in der Dorfgruppe nicht verkünden bzw. nutzen.
+
+#### 5.5. Der Bürgermeister / die Bürgermeisterin
 Vor der ersten Nacht wählen die Dorfbewohner / Dorfbewohnerinnen einen Bürgermeister / eine Bürgermeisterin.
 Mitglieder von Sondergruppen (Werwolf- und Jäger-Gruppe) kennen sich vor der Verkündung des Ergebnisses der
 Bürgermeisterwahl nicht. Bis spätestens {{model.rollen.buergermeister.zeit_kandidaten}} Uhr haben
@@ -245,17 +253,17 @@ Nach dem Tod eines Dorfbewohners / einer Dorfbewohnerin mit guter Gesinnung gela
 und wird in der Gruppe der guten Geister aufgenommen. Die guten Geister dürfen jede Nacht ab
 {{model.zeiten.zeit_ende_rollen_nacht1}} Uhr eine Nachricht
 an eine noch lebende Person ihrer Wahl versenden. Ebenso dürfen sie jede zweite Nacht die Rolle einer noch lebenden
-Person ihrer Wahl erfahren. Ihre zu verschickende Nachricht haben sie direkt an die Spielleitung zu richten,
+Person ihrer Wahl erraten. Liegen sie dabei richtig, wird die Rolle der Person vom Spielleiter bestätigt. 
+Ihre zu verschickende Nachricht haben sie direkt an die Spielleitung zu richten,
 die die Nachricht der adressierten Person zustellt. Die Gruppe der guten Geister ist Tag und Nacht aktiv.
 {{/if}}
 
 {{#if model.spielgruppen.boese_geister.aktiv}}
 #### 6.2.5. Gruppe der bösen Geister
 Nach dem Tod eines Dorfbewohners / einer Dorfbewohnerin mit böser, dunkler Gesinnung gelangt dieser / diese
-in die Gruppe der bösen Geister. Die bösen Geister dürfen jede Nacht eine Nachricht ausschließlich an die Werwölfe
-versenden. Ebenso dürfen sie jede zweite Nacht die Rolle einer von ihnen ausgewählten, noch lebenden Person raten.
-Dies bedeutet, dass die bösen Geister eine Wunschperson namentlich benennen und ihre mögliche Rolle raten müssen.
-Die Antwort erfahren sie symbolisch in Form eines nach oben oder nach untern gerichteten Daumens. Die Gruppe ist
+in die Gruppe der bösen Geister. Die bösen Geister dürfen jede Nacht eine Nachricht an eine lebende Person ihrer Wahl
+versenden. Ebenso dürfen sie jede zweite Nacht die Rolle einer von ihnen ausgewählten, noch lebenden Person erraten.
+Liegen sie dabei richtig, wird die Rolle der Person vom Spielleiter bestätigt. Die Gruppe ist
 sowohl nachts als auch tagsüber aktiv.
 {{/if}}
 
