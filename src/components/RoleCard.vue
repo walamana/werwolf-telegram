@@ -13,6 +13,7 @@
       <div class="side">
         <h3 style="font-weight: 700">{{role.name}}</h3>
         <p>Bewertung: <span class="amount-roles" :style="{ background: scoreColor(role.score, -8, 8)}">{{role.score}}</span></p>
+        <p>Eskalationsfaktor: <span class="amount-roles" :style="{ background: scoreColor(-role.escalation, -5, 0)}">{{role.escalation}}</span></p>
         <span class="description">{{template}}</span>
       </div>
     </div>
@@ -42,7 +43,8 @@ name: "RoleCard",
     roleIcon(role){
       return "./assets/roles/" + role.icon + ".png"
     },
-    scoreColor(score, worst, best){ return ManualCreator.scoreColor(score, worst, best) }
+    scoreColor(score, worst, best){ return ManualCreator.scoreColor(score, worst, best) },
+    calculateColor(score, low, high){ return ManualCreator.calculateColor(score, low, high) }
   },
   mounted() {
     this.template = Rollen.renderTemplate(this.role)

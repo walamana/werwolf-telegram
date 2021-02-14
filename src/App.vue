@@ -55,9 +55,37 @@
 
 
 <!--      5. Rollen in der Dorfgemeinschaft-->
-      <collapsible-div title="5. Rollen in der Dorfgemeinschaft" icon="person_outline" second-option="visibility" @option="scrollTo(5)">
-        <p>Gesamtanzahl an Rollen: <span class="amount-roles">{{amountRoles()}}</span></p>
-        <p>Balancing: <span class="amount-roles" :style="{ background: scoreColorAlt(totalScore())}">{{totalScore()}}</span> <span>{{difficulty()}}</span></p>
+      <collapsible-div :collapsed="false" title="5. Rollen in der Dorfgemeinschaft" icon="person_outline" second-option="visibility" @option="scrollTo(5)">
+        <h3>Balancing:</h3>
+        <div class="balancings">
+          <div class="headers">
+            <span class="header">Anzahl</span>
+            <span class="header">Schwierigkeit <i class="material-icons" v-tooltip="'Böse Rollen verringern diesen Wert. Für ein faires Spiel sollte die Zahl um 0 liegen.'">info_outline</i></span>
+            <span class="header">Verteilung <i class="material-icons" v-tooltip="'Auf einen Werwolf kommen x gutgesinnte Figuren.'">info_outline</i></span>
+            <span class="header">Eskalation <i class="material-icons" v-tooltip="'Um so höher dieser Wert ist, um so eskalativ kann die Runde sein, also um so mehr Ereignisse / Tode können geschehen'">info_outline</i></span>
+          </div>
+          <div class="body">
+            <div class="item">
+              <span class="amount-roles">{{amountRoles()}}</span>
+            </div>
+            <div class="item">
+              <span class="amount-roles" :style="{ background: scoreColorAlt(totalScore())}">{{totalScore()}}</span>
+              <span class="description" >{{difficulty()}}</span>
+            </div>
+            <div class="item">
+              <span class="amount-roles distribution-score" :style="{ background: calculateColor(distributionScore(), 1.5, 3)}">{{distributionScore()}}</span>
+            </div>
+            <div class="item">
+              <span class="amount-roles" :style="{ background: calculateColor(-escalationScore(), -10, 10)}">{{escalationScore()}}</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 10px; display: flex; align-items: center">
+          <div style="width: 10px; height: 10px; background: hsla(200, 100%, 50%, 0.5); margin-right: 10px; border-radius: 5px"></div><span style="margin-right: 20px; font-size: 14px; opacity: 0.7">Zu leicht</span>
+          <div style="width: 10px; height: 10px; background: hsla(100, 100%, 50%, 0.5); margin-right: 10px; border-radius: 5px"></div><span style="margin-right: 20px; font-size: 14px; opacity: 0.7">Gut balanciert</span>
+          <div style="width: 10px; height: 10px; background: hsla(0, 100%, 50%, 0.5); margin-right: 10px; border-radius: 5px"></div><span style="margin-right: 20px; font-size: 14px; opacity: 0.7">Zu schwer</span>
+        </div>
+        <br>
         <input checked type="checkbox" @click.stop v-model="man.rollen.rollenuebersicht"/><label>Rollenübersicht anzeigen</label><br>
         <input checked type="checkbox" @click.stop v-model="man.rollen.rollenuebersicht_amount"/><label>Anzahl in Rollenüberischt berücksichtigen</label><br>
         <h3>Aktivierte Rollen:</h3>
@@ -280,13 +308,16 @@ import LazyLoadImage from "@/directives/LazyLoadImage";
 import { saveAs, File } from "file-saver"
 import RoleCard from "./components/RoleCard";
 import {Manual} from "./services/ManualModel";
+import Tooltip from "./directives/Tooltip";
 
 export default {
   name: 'App',
   directives: {
-    "lazy-load": LazyLoadImage
+    "lazy-load": LazyLoadImage,
+    "tooltip": Tooltip
   },
   components: {
+    Tooltip,
     RoleCard,
     Button,
     InputField,
@@ -385,7 +416,22 @@ export default {
       }
       return score
     },
-    scoreColor(score){ return ManualCreator.scoreColor(score) },
+    // Returns 1 good : x evil
+    distributionScore(){
+      let evil = 0;
+      for(let role of this.man.rollen.aktiviert){
+        if(role.attitude === "evil") evil += role.amount;
+      }
+      return floorAt((this.amountRoles() - evil) / evil, 2)
+    },
+    escalationScore(){
+      let escalation = 0;
+      for(let role of this.man.rollen.aktiviert){
+        escalation += role.escalation * role.amount
+      }
+      return escalation
+    },
+    scoreColor(score){ return this.calculateColor(score, -4, 4) },
     scoreColorAlt(score){ return ManualCreator.scoreColorAlt(score) },
     difficulty(){
       if(this.totalScore() >= 4) return "Sehr Leicht"
@@ -468,13 +514,67 @@ export default {
 
 
     checkRole(name){ return this.man.rollen.aktiviert.find(r => r.name === name)},
-    jaegergruppeEnabled(){ return this.checkRole("Der Jäger") && this.checkRole("Der Jägerhund")}
+    jaegergruppeEnabled(){ return this.checkRole("Der Jäger") && this.checkRole("Der Jägerhund")},
+    calculateColor(value, low, high){ return ManualCreator.calculateColor(value, low, high) }
   },
+}
+
+function floorAt(num, decimal){
+  let f = Math.pow(10, decimal)
+  return Math.floor(num * f) / f
 }
 </script>
 
 <style lang="less">
 
+//.tippy-box{
+//  font-family: "Open Sans", sans-serif;
+//  background-color: #333;
+//}
+
+//.tooltip {
+//  font-family: "Open Sans", sans-serif;
+//  color: white;
+//  border-radius: 4px;
+//  font-size: 14px;
+//  transition: opacity 100ms;
+//  opacity: 0;
+//  z-index: 10000;
+//  max-width: 200px;
+//  position: relative;
+//  padding-top: 10px;
+//
+//
+//  &.enter{
+//    opacity: 1;
+//  }
+//  &.exit{
+//    opacity: 0;
+//  }
+//
+//  span{
+//    display: block;
+//    padding: 5px 10px;
+//    background-color: #333;
+//    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+//    border-radius: 2px;
+//  }
+//
+//  .triangle{
+//    content: "";
+//    display: block;
+//    position: absolute;
+//    top: 0;
+//    left: calc(50% - 10px);
+//    width: 0;
+//    height: 0;
+//
+//    border-left: 10px solid transparent;
+//    border-right: 10px solid transparent;
+//
+//    border-bottom: 10px solid #333;
+//  }
+//}
 
 html, body{
   margin: 0;
@@ -595,6 +695,50 @@ html, body{
   }
 }
 
+.balancings{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  .headers{
+    display: flex;
+    .header{
+      flex-shrink: unset !important;
+      padding: 5px;
+      width: 100%;
+      text-align: center;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      cursor: default;
+      border-bottom: none;
+
+      i{
+        font-size: 16px;
+        margin-left: 6px;
+        opacity: 0.5;
+      }
+    }
+  }
+  .body{
+    display: flex;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    .item{
+      padding: 10px 0 5px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .description{
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
 .roles-list{
   display: flex;
   flex-direction: column;
@@ -605,15 +749,20 @@ html, body{
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 4px;
+  padding: 4px 8px;
   font-size: 14px;
   font-weight: 600;
-  width: 20px;
+  width: 12px;
   height: 20px;
-  border-radius: 100%;
+  border-radius: 14px;
   margin: 0 10px;
   background: rgba(255, 255, 255, 0.3);
   transition: 400ms background-color;
+
+  &.distribution-score{
+    min-width: 20px;
+    width: auto;
+  }
 }
 
 .collapse-container .content > .container{
