@@ -6,6 +6,11 @@ name: Update Github Pages
 on:
   push:
     branches: [ main ]
+    paths:
+    - "private/**"
+    - "public/**"
+    - "src/**"
+    
 
 jobs:
   build:
