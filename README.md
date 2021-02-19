@@ -1,4 +1,4 @@
-# Werwolf Telegram - Das Gesellschaftsspiel online
+# 🐺 Werwolf Telegram - Das Gesellschaftsspiel online
 
 Werwolf Telegram ist eine Onlinevariante des bekannten Gesellschaftsspiels _Werwolf_. V.a. in Zeiten, in denen man viel zu Hause ist und sich nicht treffen kann, ist das eine gute Möglichkeit mit seiner Gruppe in Kontakt zu bleiben.
 
