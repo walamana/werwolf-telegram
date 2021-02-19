@@ -1,6 +1,10 @@
-# 🐺 Werwolf Telegram - Das Gesellschaftsspiel online
+<p align="center">
+  <img src="https://github.com/walamana/werwolf-telegram/blob/main/public/assets/roles/werwolf.png">
+</p>
 
-Werwolf Telegram ist eine Onlinevariante des bekannten Gesellschaftsspiels _Werwolf_. V.a. in Zeiten, in denen man viel zu Hause ist und sich nicht treffen kann, ist das eine gute Möglichkeit mit seiner Gruppe in Kontakt zu bleiben.
+<h1 align="center">🐺 Werwolf Telegram - Das Gesellschaftsspiel online</h1>
+
+Werwolf Telegram ist eine Onlinevariante des bekannten Gesellschaftsspiels _Werwolf_. Vor allem in Zeiten, in denen man viel zu Hause ist und sich nicht treffen kann, ist das eine gute Möglichkeit mit seiner Gruppe in Kontakt zu bleiben.
 
 
 Anstatt, dass das Spiel in 30 Minuten gespielt wird, wird es in einem echten Tag-Nacht-Zyklus gespielt, der Tag wird also zum Tag, und die Nacht zur tatsächlichen Nacht. 
@@ -14,7 +18,8 @@ Dieses Projekt bietet die Möglichkeit ein eigenes Regelwerk für eine Runde zu 
 
 Wir, die Stadtteilkirche Rosenheim Inn,  
 
-## Die Webseite entwickeln
+
+## Entwicklung
 ```
 npm install
 ```
