@@ -14,9 +14,7 @@ Dieses Projekt bietet die Möglichkeit ein eigenes Regelwerk für eine Runde zu 
 ### 🌐 [Zum Regelwerk-Generator](https://walamana.github.io/werwolf-telegram/)
 ### 📔 [Zum Wiki - Wir funktioniert Werwolf Telegram?](https://github.com/walamana/werwolf-telegram/wiki)
 
-## Credits
-
-Wir, die Stadtteilkirche Rosenheim Inn,  
+Ein Projekt der Ministranten der Stadtteilkirche Rosenheim Inn
 
 
 ## Entwicklung
