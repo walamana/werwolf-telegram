@@ -71,7 +71,11 @@ aktiv wie möglich in das Spiel einbringt, denn das macht dieses Spiel attraktiv
 darauf zu achten, dass die hitziger werdenden Diskussionen frei von Beleidigungen bleiben, damit niemand in
 seiner/ihrer Persönlichkeit verletzt wird. Fehlverhalten haben einen Ausschluss vom Spiel zur Folge!
 
-#### 3.5. Die Spielleitung
+#### 3.5. Online-Status
+Der Online-Status **muss** bis nach der Bürgermeisterwahl **aktiviert** sein (außer jemand möchte das grundsätzlich aus privatsphäregründen nicht). 
+Danach ist es jedem Spieler überlassen, den Status wieder zu deaktivieren. 
+
+#### 3.6. Die Spielleitung
 Die Spielleitung ist verpflichtet, den Spielern klare Informationen zu geben. Sollte es doch zu Unklarheiten kommen, ist 
 jeder Spieler aufgefordert nachzufragen. Die Spielleitung gibt während des Spiels keine Handlungstipps für einzelne Figuren.
 Im Spiel können immer wieder Situationen stehen, die bisher nicht vom Regelwerk gedeckt sind. Die Spielleitung wird dann
