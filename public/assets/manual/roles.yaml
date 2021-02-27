@@ -214,11 +214,10 @@ Die reine Seele:
   escalation: 0
   template: >-
     ist eine unbescholtene Person unter den Dorfbewohnern, die in der
-    Dorfgemeinschaft alle kennen. Sie verfügt über keinerlei besonderen
-    Fähigkeiten und ist zu schüchtern, um für das Amt des Bürgermeisters zu
-    kandidieren. Für die Werwölfe stellt die reine Seele ein wenig attraktives
-    Opfer dar. Sie wird von der Spielleitung zu Beginn des Spiels allen
-    offenbart.
+    Dorfgemeinschaft alle kennen, sie kann aber auch von den Werwölfen infiziert werden.
+    Sie verfügt über keinerlei besonderen Fähigkeiten und ist zu schüchtern, 
+    um für das Amt des Bürgermeisters zu kandidieren. Sie wird von der Spielleitung 
+    zu Beginn des Spiels allen offenbart.
   attitude: good
   icon: undefined
 Die Dorfschlampe:
