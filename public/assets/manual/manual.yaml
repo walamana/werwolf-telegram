@@ -5,8 +5,8 @@ einfuerung:
 zeiten:
   zeit_beginn_nacht1: 20:00
   zeit_ende_rollen_nacht1: 22:00
+  zeit_beginn_nacht2: 22:00
   zeit_ende_rollen_nacht2: 08:50
-  zeit_beginn_nacht2: 00:00
   zeit_beginn_tag: 09:00
   zeit_beginn_plaedoyer_klaeger: 18:00
   zeit_beginn_plaedoyer_angeklagte: "8:15

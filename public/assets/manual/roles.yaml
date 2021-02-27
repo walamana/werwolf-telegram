@@ -115,7 +115,7 @@ Die Hexe:
   score: 4
   escalation: 1
   template: >-
-    erwacht jede Nacht um 00:00 Uhr nach den Werwölfen. Sie hat einen Heiltrank,
+    erwacht jede Nacht um {{root.model.zeiten.zeit_beginn_nacht2}} Uhr nach den Werwölfen. Sie hat einen Heiltrank,
     mit der sie das bzw. eines der Opfer der Werwölfe retten kann, und einen
     Todestrank, mit der sie eine Person aus dem Dorf vergiften kann. Die erfährt
     dabei die Namen der Opfer{{#unless local.other.erfaehrt_namen.value}}
@@ -173,7 +173,7 @@ Der Wächter:
   escalation: -1
   template: >-
     kann jede Nacht eine Person vor Angriffen der Werwölfe beschützen. Er nennt
-    diese per Privatnachricht bis 20:00 Uhr der Spielleitung. Der Wächter kann
+    diese per Privatnachricht der Spielleitung. Der Wächter kann
     nicht dieselbe Person in zwei aufeinander folgenden Nächten beschützen.
   attitude: good
   icon: waechter
@@ -229,7 +229,7 @@ Die Dorfschlampe:
     begibt sich jede Nacht auf die Reise nach einem neuen Nächtigungsplatz und
     wählt einen Spieler, bei dem sie die Nacht verbringen möchte. Nächtigt die
     Dorfschlampe bei einem Werwolf, so stirbt sie in der Nacht. Sie muss der
-    Spielleitung bis spätestens 20:00 Uhr per Privatnachricht bekannt geben, wo
+    Spielleitung per Privatnachricht bekannt geben, wo
     sie schläft. Ansonsten wird sie in der kalten Nacht draußen sterben.
   attitude: good
   icon: dorfschlampe
@@ -249,7 +249,7 @@ Der Spanner:
   template: >-
     beobachtet jede Nacht eine Person seiner Wahl. Er kann die gleiche Peron
     auch mehrere Nächte hintereinander beobachten. Der Spanner teilt die von ihm
-    ausgewählte Person bis spätestens 20:00 Uhr der Spielleitung mit und
+    ausgewählte Person der Spielleitung mit und
     erfährt, ob diese in der Nacht zu Hause ist oder nicht. Neben den Werwölfen
     sind auch die Hexe, der Jäger, der Wächter sowie der Spanner selbst nicht zu
     Hause. 
@@ -308,7 +308,7 @@ Der Unruhestifter:
   escalation: 2
   template: >-
     gewinnt mit dem Dorf. Er darf der Spielleitung einmal per Privatnachricht
-    bis spätestens 09:00 Uhr anzeigen, dass es am kommenden Tag zwei
+    bis spätestens {{root.modal.zeiten.zeit_beginn_tag}} Uhr anzeigen, dass es am kommenden Tag zwei
     Hinrichtungen geben wird.
   attitude: good
   icon: unruhestifter

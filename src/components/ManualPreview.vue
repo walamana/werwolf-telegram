@@ -118,7 +118,8 @@ p{
 
   .material-icons.day { color: #efb62d; }
   .material-icons.dayend { color: #b16412; }
-  .material-icons.night { color: #345eb0; }
+  .material-icons.night { color: #4275d9; }
+  .material-icons.night2 { color: #8937d2; }
 }
 
 

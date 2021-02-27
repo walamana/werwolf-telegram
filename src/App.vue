@@ -850,7 +850,6 @@ button{
 }
 
 @media print {
-  background: white;
   html, body, #app {
     background: white;
   }
@@ -861,6 +860,8 @@ button{
 
   #app {
     overflow: auto;
+    background: white;
+    width: auto;
   }
 
   .printHide{
