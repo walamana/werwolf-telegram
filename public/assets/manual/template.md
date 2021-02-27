@@ -213,7 +213,8 @@ siehe Kap. 4.3., Wahlkampf zu betreiben,
 bevor ab {{model.rollen.buergermeister.zeit_abstimmung}} Uhr die Abstimmung
 beginnt, an der alle Spieler gemäß Kap. 4.4. teilnehmen müssen! Die Abstimmung endet um
 {{model.rollen.buergermeister.zeit_abstimmung_ende}} Uhr.
-Der neugewählte Bürgermeister ist in den ersten beiden Nächten immun gegen Angriffe von Werwölfen.
+Der neugewählte Bürgermeister ist in den ersten beiden Nächten immun gegen Angriffe von Werwölfen. Er kann dennoch durch eigenes Verschulden, 
+Sonderrollen oder durch Anklage in dieser Zeit getötet werden.
 Stirbt der Bürgermeister, so folgt die im Testament des verstorbenen Bürgermeisters bestimmte Person im Amt.
 Diese ist gegen Werwolfangriffe aber nicht mehr geschützt.
 
