@@ -266,7 +266,7 @@ sowohl nachts als auch tagsüber aktiv.
 {{/if}}
 
 <br><br>
-<span style="text-align:right; display: block">Viel Spaß und Erfolg!
+<span style="text-align:right; display: block">Ganz viel Spaß und Erfolg!
 <br>Eure Spielleitung</span>
 <br><br>
 
