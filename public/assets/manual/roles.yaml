@@ -265,7 +265,7 @@ Die Justitia:
     verfassen. Das Plädoyer muss sie der Spielleitung mitteilen. Dieses wird
     dann vor der Abstimmung an die Dorfgruppe geschickt wird.
   attitude: good
-  icon: undefined
+  icon: justizia
   other:
     faehigkeit_einsetzen:
       name: Fähigkeit einsetzbar
@@ -321,7 +321,7 @@ Der Würfler:
     die Rolle einer Person erfahren. Der Würfler hat insgesamt zwei mal die Möglichkeit eine Rolle
     zu erfahren.
   attitude: good
-  icon: undefined
+  icon: wuerfler
 
 
 # Unbekannte Gesinnung
