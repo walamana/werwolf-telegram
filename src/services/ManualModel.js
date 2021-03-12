@@ -69,13 +69,18 @@ export class Manual {
         }
     }
 
+    sonderregeln = []
+
     apply(man){
         this.rollen.aktiviert.splice(0, this.rollen.aktiviert.length)
+        this.sonderregeln.splice(0, this.sonderregeln.length)
         function applyTo(from, to){
             for(let key in from){
                 if(to[key] !== undefined){
                     if(typeof to[key] === "object"){
-                        if(Object.keys(from[key]).length > 0 && from[key][0] !== undefined){
+                        if(from[key] === null || from[key] === undefined){
+                            continue
+                        }else if(Object.keys(from[key]).length > 0 && from[key][0] !== undefined){
                             for(let entry of from[key]){
                                 to[key].push(entry)
                             }

@@ -269,6 +269,16 @@ versenden. Ebenso dürfen sie jede zweite Nacht die Rolle einer von ihnen ausgew
 Liegen sie dabei richtig, wird die Rolle der Person vom Spielleiter bestätigt. Die Gruppe ist
 sowohl nachts als auch tagsüber aktiv.
 {{/if}}
+{{#gt model.sonderregeln.length 0}}
+## 7. Sonderregeln
+
+*Diese Sonderregeln können ggf. die obigen Regeln überschreiben!*
+
+{{#each model.sonderregeln}}
+#### 7.{{list-number @index}}. {{title}}
+{{{handlebars @root text}}}
+{{/each}}
+{{/gt}}
 
 <br><br>
 <span style="text-align:right; display: block">Viel Spaß und Erfolg!

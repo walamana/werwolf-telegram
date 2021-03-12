@@ -25,11 +25,11 @@ export default {
     })
   },
   methods: {
-    render(){
+    render(save){
       let converter = new showdown.Converter({
         tables: true
       })
-      let text = ManualCreator.createMarkdown()
+      let text = ManualCreator.createMarkdown(save)
       this.manualHtml = converter.makeHtml(text)
       // console.log("Rerendered", text)
     },

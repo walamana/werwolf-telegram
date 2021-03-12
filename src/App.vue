@@ -11,6 +11,10 @@
       <manual-preview id="preview" ref="preview"/>
     </div>
 
+    <div id="fab" class="printHide" :class="{hidden: !reloadAvailable}" @click="rerender(false)">
+      <i class="material-icons">autorenew</i>
+    </div>
+
 
     <i id="settingsToggle" :class="{dark: !menuVisible}"  class="material-icons" @click="menuVisible = !menuVisible">menu</i>
     <div :class="{visible: menuVisible}" class="settings">
@@ -55,7 +59,7 @@
 
 
 <!--      5. Rollen in der Dorfgemeinschaft-->
-      <collapsible-div :collapsed="false" title="5. Rollen in der Dorfgemeinschaft" icon="person_outline" second-option="visibility" @option="scrollTo(5)">
+      <collapsible-div title="5. Rollen in der Dorfgemeinschaft" icon="person_outline" second-option="visibility" @option="scrollTo(5)">
         <h3>Balancing:</h3>
         <div class="balancings">
           <div class="headers">
@@ -249,6 +253,31 @@
         </collapsible-div>
 
       </collapsible-div>
+
+      <collapsible-div :collapsed="false" title="7. Sonderregeln" icon="auto_fix_high" second-option="visibility" @option="scrollTo(7)">
+
+        <div class="extra-list">
+
+          <div class="extra"
+          v-for="(extra, i) of sonderregeln">
+            <div class="num">
+              <span>{{i + 1}}.</span>
+            </div>
+            <div class="text">
+              <input placeholder="Regelname" type="text" v-model="extra.title">
+              <textarea placeholder="Erklärungstext" v-model="extra.text"></textarea>
+            </div>
+            <div class="options">
+              <i class="material-icons icon" @click="removeArray(man.sonderregeln, i)">delete</i>
+            </div>
+          </div>
+
+          <button @click="addExtra">Regel hinzufügen <i class="material-icons icon">add</i></button>
+
+        </div>
+
+      </collapsible-div>
+
       <br>
 
 
@@ -278,12 +307,20 @@
 
       </collapsible-div>
 <!--      Exportieren-->
-      <collapsible-div title="Exportieren" icon="save" :collapsed="false">
+      <collapsible-div title="Exportieren & Einstellungen" icon="save" :collapsed="false">
 
-        <button @click="exportMarkdown">Markdown herunterladen</button>
-        <button @click="exportJSON">JSON-Konfiguration herunterladen</button>
-        <button @click="print">Drucken</button>
-        <button @click="loadStandard">Standard laden</button>
+        <div class="flex-list">
+
+          <h3>Exportieren:</h3>
+          <button @click="print">Drucken<i class="material-icons">print</i></button>
+          <button @click="exportMarkdown">Markdown herunterladen</button>
+          <button @click="exportJSON">JSON-Konfiguration herunterladen</button>
+          <h3>Einstellungen:</h3>
+          <div class="item"><input type="checkbox" v-model="autoReload"><label>Automatisch aktualisieren<br><span class="helptext">Zeigt automatisch alle Änderungen in der Vorschau.</span></label></div>
+          <div class="item"><input type="checkbox" v-model="autoSave"><label>Änderungen speichern<br><span class="helptext">Deine Einstellungen werden gespeichert, sodass du sie beim erneuten Besuch der Seite nicht nochmal eingeben musst.</span></label></div>
+          <button @click="loadStandard">Standard laden </button><br>
+
+        </div>
       </collapsible-div>
     </div>
 
@@ -336,17 +373,17 @@ export default {
       menuVisible: true,
       bgImg: "https://vignette.wikia.nocookie.net/callofduty/images/e/e1/Werewolf_DOTN_BO4.jpg/revision/latest/scale-to-width-down/2000?cb=20181219195834",
       errors: [],
+      autoReload: true,
+      autoSave: true,
+      reloadAvailable: false
     }
   },
   mounted() {
     let self = this
     ManualCreator.ready.subscribe((v) => {
+      console.log("Manual loaded")
       this.allRoles = Rollen.rollen
-      document.querySelectorAll("input").forEach(el => {
-        el.addEventListener("input", ev => {
-          this.rerender()
-        })
-      })
+      this.assignListeners()
 
       let parts = window.location.pathname.split("/")
       if(parts.length === 2 && parts[1] !== ""){
@@ -358,6 +395,13 @@ export default {
 
     ManualCreator.loadFromLocalStorage()
     ManualCreator.loadTemplates()
+  },
+  watch: {
+    autoReload(newVal){
+      if(newVal){
+        this.rerender()
+      }
+    }
   },
   computed: {
     activatedRolesSorted() {
@@ -371,8 +415,17 @@ export default {
     rolesGood() { return this.allRoles.filter(r => r.attitude === "good")},
     rolesEvil() { return this.allRoles.filter(r => r.attitude === "evil")},
     rolesUnknown() { return this.allRoles.filter(r => r.attitude === "unknown")},
+    sonderregeln() { return this.man.sonderregeln}
   },
   methods: {
+    assignListeners(){
+      document.querySelectorAll("input:not([data-listens]), textarea:not([data-listens])").forEach(el => {
+        el.dataset["listens"] = "true"
+        el.addEventListener("input", ev => {
+          this.rerender()
+        })
+      })
+    },
     scrollTo(index){
       this.$refs["preview"].scrollTo(index)
     },
@@ -400,7 +453,17 @@ export default {
       this.rerender()
     },
     removeRole(index){
-      this.man.rollen.aktiviert.splice(index, 1)
+      this.removeArray(this.man.rollen.aktiviert, index)
+    },
+    removeArray(array, index){
+      array.splice(index, 1)
+      this.rerender()
+    },
+    addExtra(){
+      this.man.sonderregeln.push({title: "", text: ""})
+      setTimeout(() => {
+        this.assignListeners()
+      }, 100)
       this.rerender()
     },
     amountRoles(){
@@ -442,11 +505,17 @@ export default {
       if(this.totalScore() <= -4) return "Schwer"
       if(this.totalScore() <= -2) return "Medium"
     },
-    rerender(){
+    rerender(auto){
+      if(auto === undefined) auto = true
       this.errors = ManualCreator.checkForMistakes()
-      setTimeout(() => {
-        this.$refs["preview"].render()
-      }, 100)
+      if(!auto || (auto && this.autoReload)){
+        this.reloadAvailable = false
+        setTimeout(() => {
+          this.$refs["preview"].render(this.autoSave)
+        }, 100)
+      }else{
+        this.reloadAvailable = true
+      }
     },
     errorIcon(error){
       if(error.level === 1) return "warning"
@@ -510,8 +579,8 @@ export default {
       return summary
     },
     loadStandard(){
-      this.man.apply(new Manual())
-      console.log(new Manual())
+      ManualCreator.loadTemplates()
+      window.location.reload(false)
     },
 
 
@@ -785,7 +854,7 @@ html, body{
   opacity: 0.5;
 }
 
-input{
+input, textarea, button{
   background: rgba(94, 160, 186, 0.3);
   margin: 5px;
   padding: 5px 0 5px 10px;
@@ -804,6 +873,80 @@ input{
   &.times{
     width: 35px;
     padding: 5px;
+  }
+}
+
+button{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Open Sans", sans-serif;;
+  padding: 7px 12px;
+  border-radius: 4px;
+  transition: background-color 100ms;
+  cursor: pointer;
+  font-weight: 600;
+  &:hover{
+    background: rgba(94, 160, 186, 0.2);
+  }
+  i{
+    margin: 0 10px;
+  }
+}
+
+.extra-list{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .extra{
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+
+
+    &:not(:first-child){
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .text{
+      width: 100%;
+      textarea{
+        background: rgba(94, 160, 186, 0.1);
+        color: rgba(255, 255, 255, 0.8);
+      }
+    }
+    .options, .num{
+      text-align: right;
+      width: 40px;
+      padding-top: 10px;
+      flex-shrink: 0;
+      user-select: none;
+
+      &.num{
+        text-align: left;
+        width: 25px;
+      }
+      i{
+        cursor: pointer;
+        opacity: 0.5;
+        &:hover{
+          opacity: 1;
+        }
+      }
+    }
+
+    input{
+      display: block;
+      width: calc(100% - 16px);
+    }
+
+    textarea{
+      display: block;
+      width: calc(100% - 16px);
+      resize: vertical;
+    }
   }
 }
 
@@ -830,6 +973,49 @@ input{
     &.verbose { background: rgba(120, 120, 120, 0.1); color: rgba(200, 200, 200, 0.9);}
     &.warning { background: rgba(133, 102, 69, 0.1); color: rgba(234, 181, 124, 0.9);}
     &.issue   { background: rgba(133, 69, 69 , 0.1); color: rgba(234, 124, 124, 0.9);}
+  }
+}
+
+.flex-list{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  .item{
+    margin-left: 10px;
+    margin-bottom: 4px;
+  }
+}
+
+#fab{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  width: 54px;
+  height: 54px;
+  border-radius: 100%;
+  background-color: #4275d9;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  transition: 300ms transform, 100ms background-color;
+  cursor: pointer;
+  transform: translateY(0);
+
+  i{
+    color: #ffffff;
+    font-size: 28px;
+    user-select: none;
+  }
+  &:hover{
+    transform: translateY(0) rotate(180deg);
+    background-color: #2b54a8;
+  }
+
+  &.hidden{
+    transform: translateY(54px + 30px);
   }
 }
 

@@ -9,7 +9,7 @@ zeiten:
   zeit_ende_rollen_nacht2: 08:50
   zeit_beginn_tag: 09:00
   zeit_beginn_plaedoyer_klaeger: 18:00
-  zeit_beginn_plaedoyer_angeklagte: "8:15
+  zeit_beginn_plaedoyer_angeklagte: 18:15
   zeit_beginn_abstimmung: 18:30
   zeit_ende_abstimmung: 20:00
 
@@ -54,5 +54,8 @@ spielgruppen:
     kommunizieren: 1
     aufdecken: 0
     raten: 0
+
+sonderregeln: []
+
 
 

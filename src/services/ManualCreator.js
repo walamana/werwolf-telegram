@@ -9,6 +9,7 @@ const yaml = require("js-yaml")
 Handlebars.registerHelper("list-number", function(s) {
     return parseInt(s) + 1
 })
+
 Handlebars.registerHelper("handleTemplate", function(root) {
     let template = Handlebars.compile(this.template)
     return template({
@@ -41,6 +42,9 @@ Handlebars.registerHelper("count", function(context, shouldDo, options) {
 Handlebars.registerHelper("is", function(property, value, options) {
     return property === value ? options.fn(this) : "";
 })
+Handlebars.registerHelper("gt", function(property, value, options) {
+    return property > value ? options.fn(this) : "";
+})
 
 export default {
     currentVersion: 1,
@@ -55,13 +59,17 @@ export default {
             fetch("./assets/manual/roles.yaml").then(res => res.text()),
             // fetch("./assets/manual/defaults.json").then(res => res.json()),
             fetch("./assets/manual/defaults.yaml").then(res => res.text()),
+            fetch("./assets/manual/manual.yaml").then(res => res.text()),
         ]).then(results => {
             let template = results[0]
             let rollen = this.parseYAMLRoles(results[1]);
             let defaults = yaml.load(results[2])
+            let manual = yaml.load(results[3])
             this.template = template
             Rollen.rollen = rollen
             this.defaults = defaults
+            console.log(manual)
+            this.man.apply(manual)
             this.updateRoleTemplates()
             this.ready.next()
 
@@ -87,14 +95,15 @@ export default {
                 this.updateRoleTemplates()
             })
     },
-    createMarkdown() {
+    createMarkdown(save) {
+        if(save === undefined) save = true
         let template = Handlebars.compile(this.template)
         // this.updateRoleTemplates()                       // If roles get weird, uncomment this
         let context = this.createContext()
 
-        this.saveToLocalStorage().then(done => {
-            console.log("Änderungen gespeichert")
-        })
+        if(save){
+            this.saveToLocalStorage().then(done => {})
+        }
 
         return template(context)
     },
