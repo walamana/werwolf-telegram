@@ -78,7 +78,18 @@ Der Medizinerwolf:
     aussieht, als wäre die Person ein Werwolf gewesen. Wenn der Medizinerwolf eine DNA-Änderung
     vornehmen möchte, muss dieser bis {{root.odel.zeiten.zeit_ende_abstimmung}} Uhr dem
     Spielleiter sein Vorhaben verkünden.
-
+  attitiude: evil
+  icon: undefined
+Der Folterwolf:
+  amount: 1
+  score: 8
+  escalation: 1
+  template: >-
+    kann 2x pro Spiel in der Nacht einen Spieler bestimmen, der in der kommenden Nacht seine Rolle nicht
+    ausführen kann. Dies muss er dem Spielleiter per PN bis {{root.model.zeiten.zeit_beginn_nacht1}} Uhr
+    mitteilen. Er darf nicht 2x die gleiche Person wählen.
+  attitude: evil
+  icon: undefined
 
 # Gute Gesinnung
 
@@ -259,8 +270,8 @@ Die Justitia:
   score: 5
   escalation: 0
   template: >-
-    hat {{local.other.faehigkeit_einsetzen.value}}x die Möglichkeit während
-    einer Abstimmung die Rolle eines Angeklagten zu erfahren und ein Plädoyer zu
+    hat {{local.other.faehigkeit_einsetzen.value}}x die Möglichkeit bis zum Beginn
+    der Abstimmung die Rolle eines Angeklagten zu erfahren und ein Plädoyer zu
     verfassen. Das Plädoyer muss sie der Spielleitung mitteilen. Dieses wird
     dann vor der Abstimmung an die Dorfgruppe geschickt wird.
   attitude: good
@@ -321,7 +332,18 @@ Der Würfler:
     zu erfahren.
   attitude: good
   icon: wuerfler
-
+Der Exorzist:
+  amount: 1
+  score: 6
+  escalation: 1
+  template: >-
+    kann einmal im Spiel in der Nacht einen Spieler wählen, dessen Dämon er austreiben möchte. 
+    Wenn dieser Spieler ein Werwolf ist, so verliert er ab dem Beginn des Tages
+    seine Fähigkeit als Werwolf. Er wird aus der Werwolfsgruppe entfernt und als guter 
+    Spieler gesehen, gewinnt aber nur mit den Wölfen.
+    Wenn diese Person bereits von guter Gesinnung ist, passiert nichts. 
+  attitude: good
+  icon: undefined
 
 # Unbekannte Gesinnung
 
