@@ -233,7 +233,7 @@ Die reine Seele:
   icon: undefined
 Die Dorfschlampe:
   amount: 1
-  score: 3
+  score: 4
   escalation: 1
   template: >-
     begibt sich jede Nacht auf die Reise nach einem neuen Nächtigungsplatz und
@@ -349,7 +349,7 @@ Der Exorzist:
 
 Der Jägerhund:
   amount: 1
-  score: -2
+  score: -3
   escalation: 2
   template: >-
     verwandelt sich, sobald der Jäger gestorben ist, zum Werwolf. Der Jäger und
@@ -365,8 +365,9 @@ Der Doppelgänger:
   template: >-
     wählt am Anfang des Spiels eine Person als Vorbild aus, deren Rolle er
     kopieren möchte. Wenn diese Person stirbt, bekommt er die Rolle des
-    Vorbilds. Die Rolle dieser Person erfährt der Doppelgänger erst nach ihrem
-    Tod.
+    Vorbilds. Diese wird so übergeben, wie sie der Verstorbene hinterlassen hat. 
+    Hat z.B. die Hexe schon geheilt, kann der Doppelgänger später nicht noch einmal
+    heilen. Die Rolle des Vorbilds erfährt der Doppelgänger erst nach seinem Tod. 
   attitude: unknown
   icon: doppelgaenger
 Der Dieb:
