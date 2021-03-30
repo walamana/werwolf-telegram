@@ -344,6 +344,15 @@ Der Exorzist:
     Wenn diese Person bereits von guter Gesinnung ist, passiert nichts. 
   attitude: good
   icon: undefined
+Die Aussätzige:
+  amount: 1
+  score: 2
+  escalation: 0
+  template: >-
+    ist seit Beginn ihres Lebens erkrankt. Wird sie von den Werwölfen gefressen, 
+    dürfen diese in der folgenden Nacht kein Opfer auswählen.
+  attitude: good
+  icon: undefined
 
 # Unbekannte Gesinnung
 
