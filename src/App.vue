@@ -172,7 +172,6 @@
 
 
 
-
 <!--      6. Spielgruppen - Sondergruppen-->
       <collapsible-div title="6. Spielgruppen - Sondergruppen" icon="group" second-option="visibility" @option="scrollTo(6)">
 
@@ -301,7 +300,7 @@
         <h3>Zusammenfassung:</h3>
         <div class="summary error-list">
           <div class="error verbose" v-for="error in summary()">
-            <span class="msg" v-html="error.msg.replaceAll('\n', '<br>').replaceAll('\t', '<span class=\'tabs\'></span>')"></span>
+            <span class="msg" v-html="getErrorHTML(error)"></span>
           </div>
         </div>
 
@@ -319,7 +318,14 @@
           <div class="item"><input type="checkbox" v-model="autoReload"><label>Automatisch aktualisieren<br><span class="helptext">Zeigt automatisch alle Änderungen in der Vorschau.</span></label></div>
           <div class="item"><input type="checkbox" v-model="autoSave"><label>Änderungen speichern<br><span class="helptext">Deine Einstellungen werden gespeichert, sodass du sie beim erneuten Besuch der Seite nicht nochmal eingeben musst.</span></label></div>
           <button @click="loadStandard">Standard laden </button><br>
-
+          <div class="item">
+            <select v-model="style">
+              <option selected value="default">Standard</option>
+              <option value="brown">Braun</option>
+              <option value="blue_dark">Dunkelblau</option>
+            </select>
+            <label>Theme</label>
+          </div>
         </div>
       </collapsible-div>
     </div>
@@ -332,7 +338,6 @@
   </div>
 
 
-
 </template>
 
 <script>
@@ -343,10 +348,12 @@ import InputField from "@/components/input/InputField";
 import Button from "@/components/input/Button";
 import Rollen from "@/services/Rollen";
 import LazyLoadImage from "@/directives/LazyLoadImage";
+import VStyle from "./components/VStyle"
 import { saveAs, File } from "file-saver"
 import RoleCard from "./components/RoleCard";
 import {Manual} from "./services/ManualModel";
 import Tooltip from "./directives/Tooltip";
+
 
 export default {
   name: 'App',
@@ -360,7 +367,8 @@ export default {
     Button,
     InputField,
     CollapsibleDiv,
-    ManualPreview
+    ManualPreview,
+    VStyle
   },
   data() {
     return {
@@ -375,7 +383,8 @@ export default {
       errors: [],
       autoReload: true,
       autoSave: true,
-      reloadAvailable: false
+      reloadAvailable: false,
+      style: "default"
     }
   },
   mounted() {
@@ -400,6 +409,11 @@ export default {
     autoReload(newVal){
       if(newVal){
         this.rerender()
+      }
+    },
+    style(newVal){
+      if(newVal){
+      this.$refs["preview"].style = newVal
       }
     }
   },
@@ -529,6 +543,9 @@ export default {
     errorContainerColor(){
       if(this.errors.find(e => e.level >= 2)) return {background: 'rgba(255,106,106, 0.05)'}
       if(this.errors.find(e => e.level >= 1)) return {background: 'rgba(233,165,57,0.05)' }
+    },
+    getErrorHTML(error){
+      return error.msg.replaceAll('\n', '<br>').replaceAll('\t', '<span class=\'tabs\'></span>')
     },
     exportPdf(){
       let el = document.getElementById("preview")
@@ -854,8 +871,8 @@ html, body{
   opacity: 0.5;
 }
 
-input, textarea, button{
-  background: rgba(94, 160, 186, 0.3);
+input, textarea, button, select{
+  background: rgb(41, 60, 76);
   margin: 5px;
   padding: 5px 0 5px 10px;
   color: #ffffff;
@@ -1051,7 +1068,7 @@ button{
   }
 
   .printHide{
-    display: none;
+    display: none !important;
   }
 
   .settings {
