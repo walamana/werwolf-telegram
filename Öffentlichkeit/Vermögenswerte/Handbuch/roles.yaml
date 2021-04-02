@@ -82,7 +82,7 @@ Der Medizinerwolf:
   icon: undefined
 Der Folterwolf:
   amount: 1
-  score: 8
+  score: -8
   escalation: 1
   template: >-
     kann 2x pro Spiel in der Nacht einen Spieler bestimmen, der in der kommenden Nacht seine Rolle nicht
