@@ -321,6 +321,7 @@
           <div class="item">
             <select v-model="style">
               <option selected value="default">Standard</option>
+              <option selected value="font">Schriftart</option>
               <option value="brown">Braun</option>
               <option value="blue_dark">Dunkelblau</option>
             </select>

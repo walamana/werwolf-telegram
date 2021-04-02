@@ -9,13 +9,22 @@
     </div>
 
 
-    
+    <v-style v-if="style === 'font'">
+      h1, h2{
+        font-family: "Averia Serif Libre", sans-serif;
+      }
+      h4{ font-style: italic; }
+    </v-style>
     <v-style v-if="style === 'brown'">
+      h1, h2{
+        font-family: "Averia Serif Libre", sans-serif;
+      }
+      h4{ font-style: italic; }
       #preview.container, html, body, #app{
         background: #f0e9dd;
       }
       #preview.container h1, #preview.container h2{
-        color: #8d6333;
+        color: #865921;
         text-decoration: underline dashed;
       }
       #preview.container h3, #preview.container h4, #preview.container h5, #preview.container p{
@@ -23,9 +32,12 @@
       }
     </v-style>
     <v-style v-if="style === 'blue_dark'">
-      
+      h1, h2{
+        font-family: "Averia Serif Libre", sans-serif;
+      }
+      h4{ font-style: italic; }
       #preview.container, html, body, #app{
-        background: #060729;
+        background: #040417;
         color: #ffffff;
       }
       #preview.container h1, #preview.container h2{
@@ -104,17 +116,10 @@ h2{
   margin-top: 40px;
 }
 
-h1, h2{
-  font-family: "Averia Serif Libre", sans-serif;
-}
-
 h3, h4, h5{
   font-weight: 400;
 }
 
-h4{
-  font-style: italic;
-}
 
 p{
   font-size: 16px;
@@ -129,7 +134,6 @@ p{
   background: #ffffff;
   color: #121212;
   overflow-y: auto;
-
   
   table {
     width: 100%;
