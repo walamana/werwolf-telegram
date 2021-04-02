@@ -1,0 +1,29 @@
+zeiten:
+  list_first: >-
+    <ul>                <li>Werwolf-Gruppe aktiv</li>               
+    <li>Dorfgruppe {{#if
+    model.spielgruppen.dorfgemeinde.nachtaktiv}}aktiv{{else}}deaktiviert{{/if}}</li>               
+    <li>Hexe teilt ihre Entscheidung der Spielleitung mit, ob sie heilt, tötet
+    oder nichts unternimmt</li>                <li>Infizierter Werwolf teilt
+    sein Opfer der Spielleitung mit</li>                <li>Prediger sendet
+    seine Predigt an die Spielleitung</li>            </ul>
+  list_second: >-
+    <ul>                <li>Werwolf-Gruppe deaktiviert</li>               
+    <li>Dorfgruppe aktiv</li>                <li>Anklagen
+    möglich</li>            </ul>
+  list_third: >-
+    <ul>                <li>Erste Hälfte: Plädoyers der
+    Kläger</li>                <li>Letzte Hälfte: Plädoyers der
+    Angeklagten</li>            </ul>
+  list_fourth: >-
+    <ul>                <li>Abstimmung über Angeklagte</li>               
+    <li>Dorfgruppe deaktiviert</li>            </ul>
+  list_fifth: >-
+    <ul>                <li>Werwolf-Gruppe aktiv</li>               
+    <li>Dorfgruppe {{#if
+    model.spielgruppen.dorfgemeinde.nachtaktiv}}aktiv{{else}}deaktiviert{{/if}}</li>               
+    <li>Werwölfe teilen ihre Entscheidung über ein Opfer der Spielleitung
+    mit</li>                <li>Sonderrollen benennen die Personen der
+    Spielleitung, die sie beschützen oder beobachten wollen</li>               
+    <li>Geister-Gruppen teilen ihren Wunsch und ihre Nachrichten der
+    Spielleitung mit</li>            </ul>

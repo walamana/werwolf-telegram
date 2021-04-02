@@ -1,0 +1,5 @@
+main: default.md
+
+templates:
+  - default: default.md
+  - doppeldorf: doppeldorf.md

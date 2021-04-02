@@ -1,0 +1,429 @@
+
+
+# Dunkle Gesinnung
+
+Die Werwölfe:
+  amount: 1
+  score: -6
+  escalation: 0
+  template: suchen zusammen mit den anderen Werwölfen jede Nacht ein Opfer aus.
+  attitude: evil
+  icon: werwolf
+Der infizierte Werwolf:
+  amount: 1
+  score: -8
+  escalation: 2
+  template: >-
+    gehört zu den Werwölfen. Er hat einmal im Spiel die Möglichkeit eine Person,
+    die eigentlich von den Wölfen getötet wird, zu infizieren. Diese wird dann
+    ab der nächsten Nacht zum Werwolf, verliert aber ihre andere Rolle.
+    Personen, die in der Nacht beschützt werden (also nicht getötet werden
+    können), können nicht infiziert werden. So verhindert der Heil- und
+    Todestrank der Hexe eine Infektion. Bei einem Scheitern der Infektion,
+    bekommt der Wolf seine Fähigkeiten nicht zurück. Die zu infizierende Person
+    muss per Privatnachricht bis spätestens
+    {{root.model.zeiten.zeit_ende_rollen_nacht2}} Uhr der Spielleitung
+    mitgeteilt werden. 
+  attitude: evil
+  icon: infizierter_wolf
+Der große, fette Ratewerwolf:
+  amount: 1
+  score: -8
+  escalation: 3
+  template: >-
+    gehört zu den Werwölfen. Er darf jede Nacht die Rolle einer beliebigen
+    Person raten. Dies muss jede Nacht der Spielleitung bis {{root.model.zeiten_zeit_ende_rollen_nacht1}}
+    per Privatnachricht mitgeteilt werden. Liegt der Ratewerwolf richtig, stirbt die erratene
+    Person. Rät er allerdings zweimal falsch, stirbt der Ratewerwolf selbst. Die
+    Hexe erfährt nichts. Eine vom Wächter geschützte Person ist allerdings
+    sicher vor dem Ratewerwolf. Insgesamt können maximal 2 Personen vom Ratewolf
+    umgebracht werden.
+  attitude: evil
+  icon: ratewolf
+Das Werwolfbaby:
+  amount: 1
+  score: -8
+  escalation: 2
+  template: >-
+    gehört zu den Werwölfen. Sollte es getötet werden, können die Werwölfe in
+    der darauf folgenden Nacht zwei Opfer wählen.
+  attitude: evil
+  icon: werwolfbaby
+Der weiße Werwolf:
+  amount: 1
+  score: -3
+  escalation: 2
+  template: >-
+    gewinnt das Spiel nur, wenn er der letzte Überlebende ist. Er kann jede
+    zweite Nacht einen Werwolf töten. Hierfür muss er der Spielleitung eine
+    Privatnachricht bis spätestens {{root.model.zeiten.zeit_ende_rollen_nacht2}}
+    Uhr zukommen lassen. Der weiße Werwolf darf die anderen Werwölfe nicht verraten.
+  attitude: evil
+  icon: weisse_wolf
+Der tollwütige Hund:
+  amount: 1
+  score: -8
+  escalation: 1
+  template: >-
+    gewinnt mit den Werwölfen. Er ist ein Wesen der Nacht, wird aber vom Seher
+    als Wesen mit guter Gesinnung wahrgenommen.
+  attitude: evil
+  icon: tollwuetiger_hund
+Der Medizinerwolf:
+  amount: 1
+  score: -8
+  escalation: 3
+  template: >-
+    kann einmal im Spiel die DNA eines Toten in der Dorfabstimmung ändern, sodass es
+    aussieht, als wäre die Person ein Werwolf gewesen. Wenn der Medizinerwolf eine DNA-Änderung
+    vornehmen möchte, muss dieser bis {{root.odel.zeiten.zeit_ende_abstimmung}} Uhr dem
+    Spielleiter sein Vorhaben verkünden.
+  attitiude: evil
+  icon: undefined
+Der Folterwolf:
+  amount: 1
+  score: -8
+  escalation: 1
+  template: >-
+    kann 2x pro Spiel in der Nacht einen Spieler bestimmen, der in der kommenden Nacht seine Rolle nicht
+    ausführen kann. Dies muss er dem Spielleiter per PN bis {{root.model.zeiten.zeit_beginn_nacht1}} Uhr
+    mitteilen. Er darf nicht 2x die gleiche Person wählen.
+  attitude: evil
+  icon: undefined
+
+# Gute Gesinnung
+
+Die Dorfbewohner:
+  amount: 1
+  score: 1
+  escalation: 0
+  template: >-
+    kämpfen gegen die Werwölfe. Sie gewinnen, wenn alle Werwölfe tot sind. Sie
+    haben keine Sonderfähigkeiten
+  attitude: good
+  icon: dorfbewohner
+Der Seher:
+  amount: 1
+  score: 7
+  escalation: 0
+  template: >-
+    kann jede Nacht eine Person überprüfen, welche
+    {{local.other.erkenntnis.value}} diese hat. Hierfür schreibt er /sie eine
+    Privatnachricht an die Spielleitung, von welcher Person er / sie die Rolle
+    erfahren möchte.
+  attitude: good
+  icon: seher
+  other:
+    erkenntnis:
+      name: Erkenntnis über den Spieler
+      value: Gesinnung
+      type: option
+      options:
+        - Gesinnung
+        - Rolle
+Die Hexe:
+  amount: 1
+  score: 4
+  escalation: 1
+  template: >-
+    erwacht jede Nacht um {{root.model.zeiten.zeit_beginn_nacht2}} Uhr nach den Werwölfen. Sie hat einen Heiltrank,
+    mit der sie das bzw. eines der Opfer der Werwölfe retten kann, und einen
+    Todestrank, mit der sie eine Person aus dem Dorf vergiften kann. Die erfährt
+    dabei die Namen der Opfer{{#unless local.other.erfaehrt_namen.value}}
+    **nicht**{{/unless}}. Die Entscheidung muss bis spätestens
+    {{root.model.zeiten.zeit_ende_rollen_nacht2}} Uhr der Spielleitung
+    mitgeteilt werden. Über die Infektion einer Person durch den infizierten
+    Werwolf wird die Hexe nicht informiert.
+  attitude: good
+  icon: hexe
+  other:
+    erfaehrt_namen:
+      name: Erfährt Namen der Opfer
+      value: true
+      type: toggle
+Der Jäger:
+  amount: 1
+  score: 3
+  escalation: 1
+  template: >-
+    hat die Möglichkeit kurz vor seinem Tod mit seinem letzten Schuss eine
+    weitere Person mit in den Tod nehmen. Durch seinen Tod verwandelt sich sein
+    Hund zum Werwolf. Da der Jäger seinen treuen Hund über alles liebt, kann er
+    nicht erschießen! Sollte der Jägerhund sterben, ist der Jäger so wütend,
+    dass er blindlings eine andere Person erschießt. Jäger und Hund sind
+    zusammen in einer Sondergruppe und dürfen sich durchgehend austauschen.
+  attitude: good
+  icon: jaeger
+Der Aussätzige:
+  amount: 1
+  score: 3
+  escalation: 0
+  template: >-
+    besitzt keine übersinnlichen Fähigkeiten. Wenn die Werwölfe ihn fressen,
+    können sie in der folgenden Nacht kein weiteres Opfer töten, weil sie sich
+    den Magen verdorben haben.
+  attitude: good
+  icon: undefined
+Der Amor:
+  amount: 1
+  score: -3
+  escalation: 1
+  template: >-
+    wählt in der ersten Nacht zwei Personen aus, die sich unendlich verlieben.
+    Wenn das Liebespaar der selben Gruppe - z.B. dem Dorf oder den Werwölfen -
+    gehört, gewinnt es mit der jeweiligen Gruppe. Andernfalls gewinnt es nur
+    dann, wenn die Verliebten die letzten lebenden Spieler im Dorf sind. Stirbt
+    einer der beiden, stürzt sich der andere Partner aus Trauer mit in den Tod
+    und begeht Selbstmord. Sind beide Spieler teil einer jeweils anderen Gruppe,
+    kommen sie **nicht** in die Geistergruppen
+  attitude: good
+  icon: amor
+Der Wächter:
+  amount: 1
+  score: 3
+  escalation: -1
+  template: >-
+    kann jede Nacht eine Person vor Angriffen der Werwölfe beschützen. Er nennt
+    diese per Privatnachricht der Spielleitung. Der Wächter kann
+    nicht dieselbe Person in zwei aufeinander folgenden Nächten beschützen.
+  attitude: good
+  icon: waechter
+Der Prediger:
+  amount: 1
+  score: 3
+  escalation: 1
+  template: >-
+    kann jede Nacht eine anonyme Rede gegen eine bestimmte Person halten, die
+    dann am darauffolgenden Tag angeklagt wird. In der Abstimmung besitzt der
+    Prediger {{local.other.extrastimme.value}} Extrastimme(n) gegen seinen
+    Angeklagten, wenn er für diese Person stimmt. Dem Dorf wird nicht
+    mitgeteilt, wer der Prediger ist, lediglich die Anklageschrift wird
+    veröffentlicht. Der Prediger muss diese in einer Privatnachricht der
+    Spielleitung bis spätestens {{root.model.zeiten.zeit_ende_rollen_nacht2}}
+    Uhr mitteilen.
+  attitude: good
+  icon: prediger
+  other:
+    extrastimme:
+      name: Extra Stimmen
+      value: 1
+      type: number
+Der Messias:
+  amount: 1
+  score: 3
+  escalation: 0
+  template: >-
+    ersteht nach drei Tagen wieder auf, nachdem er – unabhängig davon, ob durch
+    eine Hinrichtung, durch die Werwölfe oder eine Sonderrolle – gestorben ist.
+    Die Auferstehung ist ihm nur einmal möglich. Erst nach einem zweiten Tod
+    wird der Messias in der Gruppe der guten Geister aufgenommen.
+  attitude: good
+  icon: undefined
+Die reine Seele:
+  amount: 1
+  score: 3
+  escalation: 0
+  template: >-
+    ist eine unbescholtene Person unter den Dorfbewohnern, die in der
+    Dorfgemeinschaft alle kennen, sie kann aber auch von den Werwölfen infiziert werden.
+    Sie verfügt über keinerlei besonderen Fähigkeiten und ist zu schüchtern, 
+    um für das Amt des Bürgermeisters zu kandidieren. Sie wird von der Spielleitung 
+    zu Beginn des Spiels allen offenbart.
+  attitude: good
+  icon: undefined
+Die Dorfschlampe:
+  amount: 1
+  score: 4
+  escalation: 1
+  template: >-
+    begibt sich jede Nacht auf die Reise nach einem neuen Nächtigungsplatz und
+    wählt einen Spieler, bei dem sie die Nacht verbringen möchte. Nächtigt die
+    Dorfschlampe bei einem Werwolf, so stirbt sie in der Nacht. Sie muss der
+    Spielleitung per Privatnachricht bekannt geben, wo
+    sie schläft. Ansonsten wird sie in der kalten Nacht draußen sterben.
+  attitude: good
+  icon: dorfschlampe
+Der Seherlehrling:
+  amount: 1
+  score: 4
+  escalation: 0
+  template: >-
+    gewinnt mit dem Dorf. Er übernimmt das Amt des Sehers, sobald dieser
+    gestorben ist.
+  attitude: good
+  icon: undefined
+Der Spanner:
+  amount: 1
+  score: 5
+  escalation: 1
+  template: >-
+    beobachtet jede Nacht eine Person seiner Wahl. Er kann die gleiche Peron
+    auch mehrere Nächte hintereinander beobachten. Der Spanner teilt die von ihm
+    ausgewählte Person der Spielleitung mit und
+    erfährt, ob diese in der Nacht zu Hause ist oder nicht. Neben den Werwölfen
+    sind auch die Hexe, der Jäger, der Wächter sowie der Spanner selbst nicht zu
+    Hause. 
+  attitude: good
+  icon: spanner
+Die Justitia:
+  amount: 1
+  score: 5
+  escalation: 0
+  template: >-
+    hat {{local.other.faehigkeit_einsetzen.value}}x die Möglichkeit bis zum Beginn
+    der Abstimmung die Rolle eines Angeklagten zu erfahren und ein Plädoyer zu
+    verfassen. Das Plädoyer muss sie der Spielleitung mitteilen. Dieses wird
+    dann vor der Abstimmung an die Dorfgruppe geschickt wird.
+  attitude: good
+  icon: justizia
+  other:
+    faehigkeit_einsetzen:
+      name: Fähigkeit einsetzbar
+      value: 3
+      type: number
+Der Perverse:
+  amount: 1
+  score: 2
+  escalation: 0
+  template: >-
+    darf sich jeden Tag, allerdings nur tagsüber, vor einem von ihm bestimmten
+    Spieler entblößen. Der ausgewählte Mitspieler erfährt die wahre Identität
+    des Perversen. Der Perverse muss den Namen des ausgewählten Spielers der
+    Spielleitung per Privatnachricht mitteilen.
+  attitude: good
+  icon: perverser
+Der Beschwörer:
+  amount: 1
+  score: 1
+  escalation: 0
+  template: >-
+    gewinnt mit dem Dorf. Er darf der Spielleitung jede Nacht eine Person
+    nennen, die schweigen muss. Es darf sich nicht zweimal um dieselbe Person
+    hintereinander handeln.
+  attitude: good
+  icon: beschwoerer
+Der harte Bursche:
+  amount: 1
+  score: 2
+  escalation: 0
+  template: >-
+    überlebt einen Werwolfangriff und stirbt erst in der folgenden Nacht. Der in
+    der Nacht schwer verwundete kann dennoch am darauf folgenden Tag an den
+    Diskussionen und an der Abstimmung teilnehmen.
+  attitude: good
+  icon: harter_bursche
+Der Unruhestifter:
+  amount: 1
+  score: 2
+  escalation: 2
+  template: >-
+    gewinnt mit dem Dorf. Er darf der Spielleitung einmal per Privatnachricht
+    bis spätestens {{root.modal.zeiten.zeit_beginn_tag}} Uhr anzeigen, dass es am kommenden Tag zwei
+    Hinrichtungen geben wird.
+  attitude: good
+  icon: unruhestifter
+Der Würfler:
+  amount: 1
+  score: 3
+  escalation: 0
+  template: >-
+    würfelt jede Nacht zusammen mit dem Spielleiter. Stimmen beide Augenzahlen überein, darf der Würfler
+    die Rolle einer Person erfahren. Der Würfler hat insgesamt zwei mal die Möglichkeit eine Rolle
+    zu erfahren.
+  attitude: good
+  icon: wuerfler
+Der Exorzist:
+  amount: 1
+  score: 6
+  escalation: 1
+  template: >-
+    kann einmal im Spiel in der Nacht einen Spieler wählen, dessen Dämon er austreiben möchte. 
+    Wenn dieser Spieler ein Werwolf ist, so verliert er ab dem Beginn des Tages
+    seine Fähigkeit als Werwolf. Er wird aus der Werwolfsgruppe entfernt und als guter 
+    Spieler gesehen, gewinnt aber nur mit den Wölfen.
+    Wenn diese Person bereits von guter Gesinnung ist, passiert nichts. 
+  attitude: good
+  icon: undefined
+Die Aussätzige:
+  amount: 1
+  score: 2
+  escalation: 0
+  template: >-
+    ist seit Beginn ihres Lebens erkrankt. Wird sie von den Werwölfen gefressen, 
+    dürfen diese in der folgenden Nacht kein Opfer auswählen.
+  attitude: good
+  icon: undefined
+
+# Unbekannte Gesinnung
+
+Der Jägerhund:
+  amount: 1
+  score: -3
+  escalation: 2
+  template: >-
+    verwandelt sich, sobald der Jäger gestorben ist, zum Werwolf. Der Jäger und
+    sein Hund dürfen sich, über die dazugehörige Sondergruppe, sowohl am Tag,
+    als auch bei Nacht, austauschen. Der Jägerhund darf vom Jäger nicht
+    erschossen werden.
+  attitude: unknown
+  icon: jaegerhund
+Der Doppelgänger:
+  amount: 1
+  score: 1
+  escalation: 1
+  template: >-
+    wählt am Anfang des Spiels eine Person als Vorbild aus, deren Rolle er
+    kopieren möchte. Wenn diese Person stirbt, bekommt er die Rolle des
+    Vorbilds. Diese wird so übergeben, wie sie der Verstorbene hinterlassen hat. 
+    Hat z.B. die Hexe schon geheilt, kann der Doppelgänger später nicht noch einmal
+    heilen. Die Rolle des Vorbilds erfährt der Doppelgänger erst nach seinem Tod. 
+  attitude: unknown
+  icon: doppelgaenger
+Der Dieb:
+  amount: 1
+  score: 1
+  escalation: 0
+  template: >-
+    hat die Möglichkeit vor der ersten Nacht eine nicht vergebene Rolle unter
+    den Dorfbewohnern anzunehmen, die er bis zum Spielende behält.
+  attitude: unknown
+  icon: undefined
+Das elternlose Kind:
+  amount: 1
+  score: -2
+  escalation: 2
+  template: >-
+    nimmt sich in der ersten Nacht ein Mitglied des Dorfes zum Vorbild. Es
+    erfährt die Rolle des Vorbildes und ist immun gegen Werwolfangriffe, solange
+    das Vorbild lebt. Wenn das Vorbild stirbt, wird das elternlose Kind zum
+    Werwolf. Stirbt das elternlose Kind, dessen Vorbild noch lebt, durch eine
+    Hinrichtung, gelangt es in den Himmel der guten Geister. Unabhängig von der
+    Rolle des Vorbildes kann das elternlose Kind, solange das Vorbild lebt, nur
+    mit den Dorfbewohnern gewinnen.
+  attitude: unknown
+  icon: undefined
+Die Bloody Mary:
+  amount: 1
+  score: 3
+  escalation: 3
+  template: >-
+    gewinnt mit dem Dorf. Wenn sie durch eine Hinrichtung stirbt, stirbt ihr
+    Ankläger mit ihr. Stirbt sie durch die Werwölfe, kann sie zwei Personen
+    wählen. Jeder Werwolf, der sich unter den zwei befindet, stirbt. Stirbt sie
+    durch eine Sonderrolle, stirbt diese Sonderrolle mit ihr.
+  attitude: unknown
+  icon: undefined
+Der Viruspatient aus Ischgl:
+  amount: 1
+  score: -5
+  escalation: 3
+  template: >-
+    hat als Ziel, alle Mitspieler (Werwölfe und Dorfbewohner) mit seinem Virus zu infizieren.
+    Er gewinnt sobald alle lebenden Spieler von ihm infiziert worden sind. In der ersten Nacht
+    darf er zwei Personen infizieren, in allen anderen Nächten eine weitere. Alle infizierten
+    Spieler behalten ihre Rolle und ihre Sonderfähigkeiten. Alle Infizierten kommen in die
+    Infiziertengruppe. In dieser Gruppe darf nicht geschrieben werden, sie dient nur der Information,
+    wer bereits infiziert wurde. Stirbt der Viruspatient kann er nicht mehr gewinnen.
+    Einen Schutz vor einer Infektion gibt es nicht.
+  attitude: unknown
+  icon: undefined
