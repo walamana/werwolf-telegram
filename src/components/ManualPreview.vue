@@ -1,22 +1,81 @@
 <template>
 
-    <div id="preview" class="container" v-html="manualHtml">
+  <div id="preview" class="container">
+
+    <div v-html="manualHtml">
 
 
 
     </div>
+
+
+    <v-style v-if="style === 'font'">
+      h1, h2{
+        font-family: "Averia Serif Libre", sans-serif;
+      }
+      h4{ font-style: italic; }
+    </v-style>
+    <v-style v-if="style === 'brown'">
+      h1, h2{
+        font-family: "Averia Serif Libre", sans-serif;
+      }
+      h4{ font-style: italic; }
+      #preview.container, html, body, #app{
+        background: #f0e9dd;
+      }
+      #preview.container h1, #preview.container h2{
+        color: #865921;
+        text-decoration: underline dashed;
+      }
+      #preview.container h3, #preview.container h4, #preview.container h5, #preview.container p{
+        color: #121212;
+      }
+    </v-style>
+    <v-style v-if="style === 'blue_dark'">
+      h1, h2{
+        font-family: "Averia Serif Libre", sans-serif;
+      }
+      h4{ font-style: italic; }
+      #preview.container, html, body, #app{
+        background: #040417;
+        color: #ffffff;
+      }
+      #preview.container h1, #preview.container h2{
+        color: #f2f5ff;
+        text-decoration: underline dashed;
+      }
+      h2{
+        margin-top: 60px;
+        margin-bottom: 40px;
+      }
+      table thead tr th{
+        border-color: #d8defa;
+      }
+
+      table td, table th{
+        border-color: #cdd6ff44;
+      }
+
+    </v-style>
+
+  </div>
     
 </template>
 
 <script>
 import * as showdown from "showdown"
 import ManualCreator from "@/services/ManualCreator";
+import VStyle from "@/components/VStyle"
 
 export default {
   name: "ManualPreview",
+  components: {
+    VStyle
+  },
   data(){
     return {
-      manualHtml: "<h2><i>Vorlage wird geladen...</i></h2>"
+      manualHtml: "<h2><i>Vorlage wird geladen...</i></h2>",
+      style: "default"
     }
   },
   mounted() {
@@ -61,19 +120,21 @@ h3, h4, h5{
   font-weight: 400;
 }
 
+
 p{
   font-size: 16px;
   line-height: 24px;
 }
 
 
+
+
 #preview.container {
   display: inline-block;
   background: #ffffff;
-  color: #212121;
+  color: #121212;
   overflow-y: auto;
-
-
+  
   table {
     width: 100%;
     border-spacing: 0;
@@ -116,11 +177,13 @@ p{
     }
   }
 
+  
   .material-icons.day { color: #efb62d; }
   .material-icons.dayend { color: #b16412; }
   .material-icons.night { color: #4275d9; }
   .material-icons.night2 { color: #8937d2; }
 }
+
 
 
 </style>

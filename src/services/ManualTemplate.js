@@ -1,3 +1,6 @@
+
+
+
 const defaults = {
     zeiten: {
         list_first: `<ul>
@@ -29,6 +32,7 @@ const defaults = {
             </ul>`.replaceAll("\n", "")
     }
 }
+
 
 export default {
     defaults: defaults,
