@@ -1,5 +1,7 @@
 name: Build Vue
 on: [push]
+env:
+  NODE_OPTIONS: --openssl-legacy-provider
 jobs:
   build_vue:
     runs-on: ubuntu-latest
