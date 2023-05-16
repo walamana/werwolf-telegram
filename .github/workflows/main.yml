@@ -5,7 +5,23 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Vue
     steps:
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Vue App to Github Pages
-      uses: StruggleYang/VuePagesAction@2.0.0
+    - name: Build Vue
+      run: |
+            npm ci;
+            npm run build;
+            cd ..
+            ls
+      shell: bash
+    - name: Setup Pages
+      uses: actions/configure-pages@v2
+      with:
+        path: './dist'
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
