@@ -5,12 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Vue
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: Setup Node
       uses: actions/setup-node@v3
       with:
         node-version: '16'
-    - name: Checkout
-      uses: actions/checkout@v3
+    - name: Setup Pages
+      uses: actions/configure-pages@v2
     - name: Build Vue
       run: |
             npm ci;
@@ -18,20 +20,21 @@ jobs:
             cd ..
             ls
       shell: bash
-    - name: Upload to Pages
+    - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
         path: './dist'
   deploy:
     needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    name: Deploy to GitHub Pages
+    name: Deploy
     permissions:
       pages: write
       id-token: write
     steps:
-    - name: Setup Pages
-      uses: actions/configure-pages@v2
     - name: Deploy to GitHub Pages
       id: deployment
-      uses: actions/deploy-pages@v1
+      uses: actions/deploy-pages@v2
