@@ -18,6 +18,10 @@ jobs:
             cd ..
             ls
       shell: bash
+    - name: Upload to Pages
+      uses: actions/upload-pages-artifact@v1
+      with:
+        path: './dist'
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -28,10 +32,6 @@ jobs:
     steps:
     - name: Setup Pages
       uses: actions/configure-pages@v2
-    - name: Upload to Pages
-      uses: actions/upload-pages-artifact@v1
-      with:
-        path: './dist'
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v1
