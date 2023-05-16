@@ -50,7 +50,7 @@ Tabelle 1: Tagesablauf der Dorfgruppe
 #### 2.3 Einschränkungen in der Nacht
 Sonderrollen, die in der Nacht Informationen vom Spielleiter erhalten, (z.B. der Seher) dürfen ihre Informationen erst nach Ende der Nacht verwenden und unter den Spielern verbreiten. Es darf deshalb weiterhin kommuniziert werden, jedoch dürfen neue Hinweise erst in der Diskussionsphase einfließen.
 
-{{else}}}{{/if}
+{{else}}}{{/if}}
 ## 3. Grundlegende Regeln
 
 #### 3.1. Ziel des Spiels
