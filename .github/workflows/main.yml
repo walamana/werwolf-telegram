@@ -1,3 +1,10 @@
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+env:
+  BUILD_PATH: "."
+
 name: Build Vue
 on: [push]
 jobs:
@@ -11,7 +18,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '16'
+        cache: ${{ steps.detect-package-manager.outputs.manager }}
+        cache-dependency-path: ${{ env.BUILD_PATH }}/package-lock.json
     - name: Setup Pages
+      id: pages
       uses: actions/configure-pages@v2
     - name: Build Vue
       run: |
@@ -23,7 +33,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
-        path: './dist'
+        path: ${{ env.BUILD_PATH }}/dist
   deploy:
     needs: build
     environment:
