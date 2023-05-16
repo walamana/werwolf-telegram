@@ -2,7 +2,7 @@
 <br><br><br>
 # Werwölfe<br>für Telegram
 
-<p style="text-align: center">Stadtteilkirche Rosenheim-Inn<br>© 2020</p><br><br><br>
+<p style="text-align: center">Stadtteilkirche Rosenheim-Inn<br>© 2023</p><br><br><br>
 <br><br>
 
 ## 1. Einführung
@@ -28,12 +28,12 @@ Kapitel 6 näher eingegangen.
 Das Spiel bezieht sich auf einen realen Tag-Nacht-Kreislauf. Entsprechend treffen sich die Dorfbewohner tagsüber 
 über die Werwolf-Spielgruppe (Dorfgruppe) auf einem virtuellen Marktplatz, diskutieren
 miteinander, klagen Verdächtige an, stimmen über Schuld und Unschuld ab und lassen die Verurteilten am Abend
-hinrichten. Während der Abstimmung der Dorfbewohner ist die Dorfgruppe deaktiviert.
+hinrichten. **Während der Abstimmung der Dorfbewohner ist die Dorfgruppe deaktiviert.**
 
 #### 2.2. Tagesablauf in der Dorfgruppe
 Der Tag in der Dorfgruppe beginnt um {{model.zeiten.zeit_beginn_tag}} Uhr und endet um {{model.zeiten.zeit_beginn_nacht1}}
 Uhr. Mit Einbruch der Nacht nach {{model.zeiten.zeit_beginn_nacht1}} Uhr werden die nachtaktiven Sondergruppen freigeschaltet
-(aktiviert). Die Dorfgruppe bleibt nach der Abstimmung nachts deaktiviert.
+(aktiviert).{{#if model.spielgruppen.dorfgemeinde.nachtaktiv}}{{else}}} Die Dorfgruppe bleibt nach der Abstimmung nachts deaktiviert.{{/if}
 Die nachfolgende Tabelle 1 visualisiert die einzelnen Zeitabschnitte von der Diskussion unter den Dorfbewohnern über
 Anklagen, Plädoyers, Abstimmung bis hin zur Hinrichtung. Diese sind für jeden Spieler bindend.
 
@@ -46,6 +46,11 @@ Tabelle 1: Tagesablauf der Dorfgruppe
 |<strong>Abstimmung</strong><br><br><i class="material-icons dayend">wb_twilight</i><br><br>{{model.zeiten.zeit_beginn_abstimmung}} - {{model.zeiten.zeit_ende_abstimmung}}|{{{handlebars @root defaults.zeiten.list_fourth}}}|Jeder Spieler / Jede Spielerin ist zur Abstimmung verpflichtet!|
 |<strong>Frühe Nacht</strong><br><br><i class="material-icons night">nights_stay</i><br><br>{{model.zeiten.zeit_beginn_nacht1}} - {{model.zeiten.zeit_beginn_nacht2}}|{{{handlebars @root defaults.zeiten.list_fifth}}}|Einschränkungen zur Bekanntgabe von Rollen an gute oder böse Geister siehe Kap. 5|
 
+{{#if model.spielgruppen.dorfgemeinde.nachtaktiv}}
+#### 2.3 Einschränkungen in der Nacht
+Sonderrollen, die in der Nacht Informationen vom Spielleiter erhalten, (z.B. der Seher) dürfen ihre Informationen erst nach Ende der Nacht verwenden und unter den Spielern verbreiten. Es darf deshalb weiterhin kommuniziert werden, jedoch dürfen neue Hinweise erst in der Diskussionsphase einfließen.
+
+{{else}}}{{/if}
 ## 3. Grundlegende Regeln
 
 #### 3.1. Ziel des Spiels
@@ -264,7 +269,8 @@ die die Nachricht der adressierten Person zustellt. Die Gruppe der guten Geister
 {{#if model.spielgruppen.boese_geister.aktiv}}
 #### 6.2.5. Gruppe der bösen Geister
 Nach dem Tod eines Dorfbewohners mit böser, dunkler Gesinnung gelangt dieser
-in die Gruppe der bösen Geister. Die bösen Geister dürfen jede Nacht eine Nachricht an eine lebende Person ihrer Wahl
+in die Gruppe der bösen Geister. Die bösen Geister dürfen jede Nacht ab
+{{model.zeiten.zeit_ende_rollen_nacht1}} Uhr eine Nachricht an eine lebende Person ihrer Wahl
 versenden. Ebenso dürfen sie jede zweite Nacht die Rolle einer von ihnen ausgewählten, noch lebenden Person erraten.
 Liegen sie dabei richtig, wird die Rolle der Person vom Spielleiter bestätigt. Die Gruppe ist
 sowohl nachts als auch tagsüber aktiv.
