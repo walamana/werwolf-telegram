@@ -1,7 +1,5 @@
 name: Build Vue
 on: [push]
-env:
-  NODE_OPTIONS: --openssl-legacy-provider
 jobs:
   build_vue:
     runs-on: ubuntu-latest
@@ -10,6 +8,8 @@ jobs:
     - uses: actions/checkout@v2
     - id: Build-Vue
       uses: xRealNeon/VuePagesAction@1.0.0
+      env:
+        NODE_OPTIONS: --openssl-legacy-provider
       with:
         username: 'walamana'
         reponame: 'werwolf-telegram'
