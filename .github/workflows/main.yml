@@ -5,10 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Vue
     steps:
-    - uses: actions/checkout@v2
-    - id: Build-Vue
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Vue App to Github Pages
       uses: StruggleYang/VuePagesAction@2.0.0
-      with:
-        username: 'walamana'
-        reponame: 'werwolf-telegram'
-        token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
