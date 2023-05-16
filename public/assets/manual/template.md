@@ -33,7 +33,7 @@ hinrichten. **Während der Abstimmung der Dorfbewohner ist die Dorfgruppe deakti
 #### 2.2. Tagesablauf in der Dorfgruppe
 Der Tag in der Dorfgruppe beginnt um {{model.zeiten.zeit_beginn_tag}} Uhr und endet um {{model.zeiten.zeit_beginn_nacht1}}
 Uhr. Mit Einbruch der Nacht nach {{model.zeiten.zeit_beginn_nacht1}} Uhr werden die nachtaktiven Sondergruppen freigeschaltet
-(aktiviert).{{#if model.spielgruppen.dorfgemeinde.nachtaktiv}}{{else}}} Die Dorfgruppe bleibt nach der Abstimmung nachts deaktiviert.{{/if}
+(aktiviert).{{#if model.spielgruppen.dorfgemeinde.nachtaktiv}}{{else}}} Die Dorfgruppe bleibt nach der Abstimmung nachts deaktiviert.{{/if}}
 Die nachfolgende Tabelle 1 visualisiert die einzelnen Zeitabschnitte von der Diskussion unter den Dorfbewohnern über
 Anklagen, Plädoyers, Abstimmung bis hin zur Hinrichtung. Diese sind für jeden Spieler bindend.
 
